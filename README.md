@@ -80,8 +80,8 @@ python /ibmm_data/TemBERTure/model/code/main.py \
 --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/
 ```
 * Task to select the correct test dataset format:
-`--task classification`
-`--task regression`
-`--task regression_on_classification_data`
-`--task bacdive_sequence_classification`
-`--task classification_on_regression_data`
+`--task classification`  
+`--task regression`  
+`--task regression_on_classification_data`  
+`--task bacdive_sequence_classification`  
+`--task classification_on_regression_data`  
