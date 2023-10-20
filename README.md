@@ -79,7 +79,7 @@ python /ibmm_data/TemBERTure/model/code/main.py \
 --test_data "/ibmm_data/TemBERTure/MultiTaskDataset/FinalDataset/ClassifierData/classifier_test_filtered" \
 --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/
 ```
-* Task to select the correct test dataset format:
+* Task to select the correct test dataset format:  
 `--task classification`  
 `--task regression`  
 `--task regression_on_classification_data`  
