@@ -36,7 +36,7 @@ parser.add_argument("--best_model_path", help="", type=str,required=False,defaul
 # if test
 parser.add_argument("--test_data", help="", type=str,required=False,default=None)
 parser.add_argument("--task", help="", type=str,required=False,default=None)
-parser.add_argument("--test_out_path", help="", type=str,required=False,default='./test')
+#parser.add_argument("--test_out_path", help="", type=str,required=False,default='./test')
 ```
 ## Train a model 
 ```
@@ -67,7 +67,7 @@ python ./main.py \
 
 * BERTSequential:
 ```
---cls_adapter_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/lr1e-5_headdrop02_linearwithwarmup/output/checkpoint-30755/
+--best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/lr1e-5_headdrop02_linearwithwarmup/output/checkpoint-30755/
 --model_type 'BERTSequential' 
 ```
 ## Test a model 
@@ -80,8 +80,8 @@ python /ibmm_data/TemBERTure/model/code/main.py \
 --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/
 ```
 * Task to select the correct test dataset format:
---task classification
---task regression
---task regression_on_classification_data
---task bacdive_sequence_classification
---task classification_on_regression_data
+`--task classification`
+`--task regression`
+`--task regression_on_classification_data`
+`--task bacdive_sequence_classification`
+`--task classification_on_regression_data`
