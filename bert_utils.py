@@ -38,15 +38,16 @@ def AdapterBERT_cls(model_name,dropout_p=0.1,n_head_layers=2,head_act_function='
     return model 
     
     
-def SequentialAdapterBERT(model_name,cls_adapter_path,dropout_p=0.4,n_head_layers=2,head_act_function='relu'):
+def TrainedAdapterBERT(model_name,adapter_path):
     model = BertAdapterModel.from_pretrained(model_name) 
-    model.load_adapter(cls_adapter_path+'AdapterBERT_adapter',with_head=True)
-    model.load_head(cls_adapter_path + 'AdapterBERT_head_adapter')
+    model.load_adapter(adapter_path+'AdapterBERT_adapter',with_head=True)
+    model.load_head(adapter_path + 'AdapterBERT_head_adapter')
     #model.add_classification_head('SequentialAdapterBERT_adapter',layers=n_head_layers,dropout=dropout_p, num_labels=1, activation_function=head_act_function)
     model.active_head == 'AdapterBERT_head_adapter' #pretrained for cls task adapter
     model.train_adapter(["AdapterBERT_adapter"])
+    model = model.to('cuda')
     #model.set_active_adapters(["SequentialAdapterBERT_adapter"])
-    logger.info(f' * USING HEAD DROPOUT: {dropout_p}')
+    logger.info(f' * USING PRE-TRAINED ADAPTERS FROM: {adapter_path}')
     return model 
     
 

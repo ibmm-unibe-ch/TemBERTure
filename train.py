@@ -7,10 +7,10 @@ import torch
 #from main import SCHEDULER, WARMUP_RATIO
 
 
-def Train(model_name, model_type, adapters, cls_train,cls_val,regr_train,regr_val,wandb_project, wandb_run_name,cls_adapter_path=None):
+def Train(model_name, model_type, adapters, cls_train,cls_val,regr_train,regr_val,wandb_project, wandb_run_name,adapter_path=None):
     
     from model import model_init
-    tokenizer, model = model_init(model_type, model_name, adapters, cls_adapter_path)
+    tokenizer, model = model_init(model_type, model_name, adapters, adapter_path)
     
     
     wandb.init(

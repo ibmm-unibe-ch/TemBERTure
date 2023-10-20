@@ -13,7 +13,7 @@ except ImportError:
 
 
 
-def model_init(model_type, model_name, adapters=None,cls_adapter_path=None,):
+def model_init(model_type, model_name, adapters=None,adapter_path=None,):
     
     from main import DROPOUT
     
@@ -30,7 +30,7 @@ def model_init(model_type, model_name, adapters=None,cls_adapter_path=None,):
         else:
             model = BERT_regr(model_name)
     elif model_type == "BERTSequential" and adapters:
-        model = SequentialAdapterBERT(model_name,cls_adapter_path,dropout_p=DROPOUT)
+        model = TrainedAdapterBERT(model_name,adapter_path)
     else:
         raise ValueError(f"Model type '{model_type}' not supported.")
 
