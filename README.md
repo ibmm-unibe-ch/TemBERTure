@@ -1,4 +1,6 @@
 # TemBERTure_cls-regr-sequential-t5
+
+## Arguments
 ```
 import argparse
 parser = argparse.ArgumentParser(description='')
@@ -36,7 +38,7 @@ parser.add_argument("--test_data", help="", type=str,required=False,default=None
 parser.add_argument("--task", help="", type=str,required=False,default=None)
 parser.add_argument("--test_out_path", help="", type=str,required=False,default='./test')
 ```
-
+## Train a model 
 ```
 python ./main.py \
 --do_train True \
@@ -68,3 +70,18 @@ python ./main.py \
 --cls_adapter_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/lr1e-5_headdrop02_linearwithwarmup/output/checkpoint-30755/
 --model_type 'BERTSequential' 
 ```
+## Test a model 
+```
+python /ibmm_data/TemBERTure/model/code/main.py \
+--do_test True \
+--model_name_or_path "Rostlab/prot_bert_bfd" \
+--with_adapters True \
+--test_data "/ibmm_data/TemBERTure/MultiTaskDataset/FinalDataset/ClassifierData/classifier_test_filtered" \
+--best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/
+```
+* Task to select the correct test dataset format:
+--task classification
+--task regression
+--task regression_on_classification_data
+--task bacdive_sequence_classification
+--task classification_on_regression_data
