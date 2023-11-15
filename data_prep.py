@@ -123,7 +123,6 @@ def tokenize_function(examples, tokenizer, max_length=512):
         return_tensors="pt",
     )
     inputs['labels'] = examples["target_text"]
-    print(inputs['input_ids'])
     return inputs
 
 
@@ -143,9 +142,6 @@ def tokenize_function_T5(examples, tokenizer, max_length=512):
             return_tensors="pt",
         )
     inputs["labels"] = labels["input_ids"]
-    #print('T5 labels',inputs["labels"])
-    #print('T5 inputs',inputs["input_ids"])
-    print(inputs)
     
     return inputs
 
@@ -176,6 +172,7 @@ def TrainerDataT5(train_df, eval_df,tokenizer):
     
     return train_df, eval_df
 
+
 def TrainerData(train_df, eval_df,tokenizer):
     from datasets import Dataset
     from data_prep import tokenize_function
@@ -183,11 +180,6 @@ def TrainerData(train_df, eval_df,tokenizer):
     
     train_df = Dataset.from_pandas(train_df).map(tokenize_function, fn_kwargs={"tokenizer": tokenizer}, batched=True, remove_columns=['input_text', 'target_text'])
     eval_df = Dataset.from_pandas(eval_df).map(tokenize_function, fn_kwargs={"tokenizer": tokenizer},batched=True, remove_columns=['input_text', 'target_text'])
-    
-    
-    #columns_to_return = ['input_ids', 'labels', 'attention_mask']
-    #train_df.set_format(type='torch', columns=columns_to_return, device="cuda")
-    #eval_df.set_format(type='torch', columns=columns_to_return, device="cuda")
     
     logger.info(' ** DATASETS READY FOR TRAINING **')
     logger.info(train_df)
