@@ -1,34 +1,40 @@
-# TemBERTure_cls-regr-sequential-t5
+# TemBERTure_cls-regr
 
 ## Arguments
 ```
 import argparse
 parser = argparse.ArgumentParser(description='')
 
+# mode
 parser.add_argument("--do_train", help="", type=bool,default=False)
 parser.add_argument("--do_test", help="", type=bool,default=False)
 parser.add_argument("--do_inference", help="", type=bool,default=False)
 
+# model
 parser.add_argument("--model_name_or_path", help="Pre-trained model to use for training or best model path for inference/test", type=str,required=False) #"ElnaggarLab/ankh-base"
 parser.add_argument("--model_type", help="T5, Bert etc", type=str,required=False) 
-parser.add_argument("--with_adapters", help="", type=bool,default=None)
 
+# training data
 parser.add_argument("--cls_train", help="", type=str,required=False)
 parser.add_argument("--cls_val", help="", type=str,required=False)
 parser.add_argument("--regr_train", help="", type=str,required=False)
 parser.add_argument("--regr_val", help="", type=str,required=False)
 
-
+# wandb training 
 parser.add_argument("--wandb_project", help="", type=str,required=False,default='./test')
 parser.add_argument("--wandb_run_name", help="", type=str,required=False,default=None)
 
+# training args
+parser.add_argument("--with_adapters", help="", type=bool,default=None)
 parser.add_argument("--lr", help="", type=float,required=False,default=1e-5)
 parser.add_argument("--weight_decay", help="", type=float,required=False,default=0.0)
-#parser.add_argument("--scheduler", help="", type=str,required=False,default = 'linear')
 parser.add_argument("--warmup_ratio", help="", type=float,required=False, default= 0)
 parser.add_argument("--head_dropout", help="", type=float,required=False, default= 0.1)
 parser.add_argument("--per_device_train_batch_size", help="", type=int,required=False, default= 16)
 parser.add_argument("--per_device_eval_batch_size", help="", type=int,required=False, default= 16)
+
+#parser.add_argument("--resume_from_checkpoint", help="", type=str,required=False, default = None) #Non funziona con TRainer e gli adapters, ho caricato gli ultimi checkpoint dell'ultima epoca e faccio un training da li usando BertSequential
+
 
 # if SequentialBERT & test
 parser.add_argument("--best_model_path", help="", type=str,required=False,default=None)
@@ -36,7 +42,15 @@ parser.add_argument("--best_model_path", help="", type=str,required=False,defaul
 # if test
 parser.add_argument("--test_data", help="", type=str,required=False,default=None)
 parser.add_argument("--task", help="", type=str,required=False,default=None)
-#parser.add_argument("--test_out_path", help="", type=str,required=False,default='./test')
+
+# if t5 test
+parser.add_argument("--cls_test_data", help="", type=str,required=False,default=None)
+parser.add_argument("--regr_test_data", help="", type=str,required=False,default=None)
+
+
+#if inference
+parser.add_argument("--data", help="", type=str,required=False,default=None)
+parser.add_argument("--column_to_predict", help="", type=int,required=False,default=None)
 ```
 ## Train a model 
 ```
@@ -53,7 +67,6 @@ python ./main.py \
 --lr 1e-3 \
 --head_dropout 0.2 \
 ```
-
 
 * BERTClassifier:
 ```
