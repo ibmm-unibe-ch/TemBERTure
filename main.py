@@ -66,6 +66,8 @@ if __name__ == "__main__":
     
     #parent_wd = f'./lr_{LEARNING_RATE}_headropout{DROPOUT}'
     parent_wd = args.wandb_run_name
+    if args.do_test:
+    	parent_wd=f"test_on_{args.test_data.split('/')[-1]}_data"
     os.makedirs(parent_wd, exist_ok=True)
     os.chdir(parent_wd)
 	
