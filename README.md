@@ -1,10 +1,10 @@
 # TemBERTure
 
-### TemBERTure_CLS
+### THERMAL CATEGORY CLASSIFICATION TASK: TemBERTure_CLS
 
 TemBERTure_CLS is a sequence-based classifier leveraging ProtBert and adopting an adapter-based approach, following the methodology proposed by Pfeiffer et al. (2020) and Houlsby et al. (2019). This classifier is fine-tuned to predict specific protein characteristics based on sequence data.
 
-### TemBERTure_Tm
+### MELTING TEMPERATURE PREDICTION TASK : TemBERTure_Tm
 
 TemBERTure_Tm serves as a regression model exclusively designed to forecast protein melting temperatures (Tm) derived solely from protein sequences.
 
