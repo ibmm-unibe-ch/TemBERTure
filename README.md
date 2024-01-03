@@ -1,7 +1,9 @@
-# TemBERTure_cls-regr
+# TemBERTure_cls-regr-sequential
 
-## TemBERTure 
 
+## How to use TemBERTure 
+```
+```
 ## TRAINING
 ### Arguments
 ```
