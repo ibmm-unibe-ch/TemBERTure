@@ -1,6 +1,6 @@
 # TemBERTure_cls-regr-sequential
 
-![Idea owner(23)](https://github.com/Ch-rode/TemBERTure/assets/61243245/77b6bca6-a4ea-43c0-9bd8-92c9c785104b)
+![Idea owner(24)](https://github.com/Ch-rode/TemBERTure/assets/61243245/60bc1739-c905-4574-a359-f57e087dc808)
 
 ## How to use TemBERTure 
 ```
