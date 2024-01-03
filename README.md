@@ -3,6 +3,7 @@
 
 ## How to use TemBERTure 
 ```
+model = TemBERTure(adapter_path=path, device='cuda:6')
 ```
 ## TRAINING
 ### Arguments
