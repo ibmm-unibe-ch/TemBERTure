@@ -1,6 +1,9 @@
 # TemBERTure_cls-regr
 
-## Arguments
+## TemBERTure 
+
+## TRAINING
+### Arguments
 ```
 import argparse
 parser = argparse.ArgumentParser(description='')
@@ -43,16 +46,12 @@ parser.add_argument("--best_model_path", help="", type=str,required=False,defaul
 parser.add_argument("--test_data", help="", type=str,required=False,default=None)
 parser.add_argument("--task", help="", type=str,required=False,default=None)
 
-# if t5 test
-parser.add_argument("--cls_test_data", help="", type=str,required=False,default=None)
-parser.add_argument("--regr_test_data", help="", type=str,required=False,default=None)
-
 
 #if inference
 parser.add_argument("--data", help="", type=str,required=False,default=None)
 parser.add_argument("--column_to_predict", help="", type=int,required=False,default=None)
 ```
-## Train a model 
+### Train the model 
 ```
 python ./main.py \
 --do_train True \
@@ -83,7 +82,7 @@ python ./main.py \
 --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/lr1e-5_headdrop02_linearwithwarmup/output/checkpoint-30755/
 --model_type 'BERTSequential' 
 ```
-## Test a model 
+### Test the model 
 ```
 python /ibmm_data/TemBERTure/model/code/main.py \
 --do_test True \
