@@ -3,10 +3,12 @@ parser = argparse.ArgumentParser(description='')
 
 # data
 parser.add_argument("--model_path", help="", type=str,default=False)
-parser.add_argument("--pdb_pairs", help="", type=str,default=False)
+parser.add_argument("--pdb_thermo", help="", type=str,default=False)
+parser.add_argument("--pdb_meso", help="", type=str,default=False)
 args = parser.parse_args()
 model_path_adapter = args.model_path  #'/ibmm_data/TemBERTure/model/BERT_cls/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/'
-pdb_pairs = args.test_out 
+pdb_thermo = args.pdb_thermo
+pdb_meso = args.pdb_meso
 
 ##  AA ENRICHMENT ANALYSIS for PDB DATA
 from attention_utils import *
@@ -20,7 +22,7 @@ print(model_bert)
 """# DATA """
 
 #### ASPETTARE SYMELA PERCHE ALTRA VOLTA MI AVEVA DATO MASK PERCHE LE SEQUENZE DIFFERISCONO NEI PDB
-#### last time --> run the model on complete_seq and plot in the .pdb only the amino acid with mask 1
+#### We run the model on complete_seq and plot in the .pdb only the amino acid with mask 1
 #### remember to *** USING ONLY SEQUENCE PREDICTED CORRECTLY ***
 
 """# FUNCTION """
@@ -33,7 +35,10 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
   import json
   import prody
   import copy
+  import os
 
+  data = pd.read_csv(data,sep=',',header=None)
+  print(data)
   ##################################################################################################
   ######################## INFO STORAGE ############################################################
   ##################################################################################################
@@ -70,7 +75,8 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
   ######################## FOR EACH SEQ ############################################################
   ##################################################################################################
 
-  for coord in tqdm.tqdm(data['PDB_ID']):
+  for coord in tqdm.tqdm(data[0]): #pdb id
+    print(coord)
 
     # 1. reading pdb
     pdb_id,pdb_chain=coord.rsplit('_') 
@@ -164,7 +170,10 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
     #5. store all the seq info
     #seq_info.append({'aa': list(df.index.values.tolist()),'att_score':list(att_to_cls.tolist()),'sec_str':sec_str_seq,'sasa_score':sasa_score})
     seq_info.append({'aa': list(df.index.values.tolist()),'att_score':list(att_to_cls.tolist()),'sec_str':sec_str_seq})
-
+    
+    
+    n_pdb_processed += 1
+    [os.remove(file) for file in os.listdir() if file.endswith("pdb.gz")]
 
   ##################################################################################################
   ######################## OVERALL #################################################################
@@ -253,7 +262,8 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
         high_att_score_aminoacid_with_sec_str_plot[k][sec] = 0.0
       high_att_score_aminoacid_with_sec_str_plot[k][sec] = high_att_score_aminoacid_avgDict[k] * high_att_score_aminoacid_with_sec_str_plot[k][sec]
 
-    n_pdb_processed += 1
+    
+
   return aa_composition,aa_composition_avgDict,aa_composition_count,aa_composition_count_avgDict,high_att_score_aminoacid,high_att_score_aminoacid_avgDict, n_pdb_processed
 
 """# 1.ANALYSIS - AA ENRICHMENT"""

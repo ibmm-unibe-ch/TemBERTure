@@ -1,7 +1,7 @@
 from transformers import TrainingArguments, Trainer, AdapterTrainer
 from utils import logger, compute_metrics_for_regression, compute_metrics_for_classification
 import torch
-from data_prep import TrainerData, ClsData, RegrData, TrainerDataT5
+from data_prep import TrainerData, ClsData, RegrData
     
 
 
@@ -64,7 +64,7 @@ def BERTTrainer(cls_train,cls_val,regr_train,regr_val,tokenizer,model,model_type
         #save_strategy='steps',
         #save_steps=7750,
         #save_total_limit=10,
-        num_train_epochs = 50,
+        num_train_epochs = 150,
         evaluation_strategy = "epoch",
         save_strategy = 'epoch',
         remove_unused_columns = False,
@@ -132,7 +132,7 @@ class RegressionAdapterTrainer(AdapterTrainer):
         model_on_gpu = next(model.parameters()).is_cuda
         print("Is model on GPU?", model_on_gpu)
         
-        outputs = model(**inputs)
+        outputs = model(**inputs.to('cuda'))
         logits = outputs[0][:, 0]
         loss = torch.nn.functional.mse_loss(logits, labels)
         return (loss, outputs) if return_outputs else loss

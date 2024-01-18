@@ -48,7 +48,7 @@ def Train(model_name, model_type, adapters, cls_train,cls_val,regr_train,regr_va
     
     
     trainer.add_callbacks=[EarlyStoppingCallback(early_stopping_patience=2)]
-    trainer.train()
+    trainer.train(resume_from_checkpoint=True)
     results = trainer.evaluate()
     
 
