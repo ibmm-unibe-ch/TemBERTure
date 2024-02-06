@@ -84,4 +84,29 @@ def compute_metrics_for_classification(eval_pred):
     }
 
 
-    
+def is_tensor(x):
+    from import_utils import is_torch_fx_proxy, is_torch_available, is_tf_available, is_flax_available
+    """
+    Tests if `x` is a `torch.Tensor`, `tf.Tensor`, `jaxlib.xla_extension.DeviceArray` or `np.ndarray`.
+    """
+    if is_torch_fx_proxy(x):
+        return True
+    if is_torch_available():
+        import torch
+
+        if isinstance(x, torch.Tensor):
+            return True
+    if is_tf_available():
+        import tensorflow as tf
+
+        if isinstance(x, tf.Tensor):
+            return True
+
+    if is_flax_available():
+        import jax.numpy as jnp
+        from jax.core import Tracer
+
+        if isinstance(x, (jnp.ndarray, Tracer)):
+            return True
+
+    return isinstance(x, np.ndarray)

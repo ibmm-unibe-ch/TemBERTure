@@ -34,7 +34,8 @@ def regression_test_data(raw_test_ds):
 def classifier_test_data(raw_test_ds):
     # TEST SET DATA PREP
     raw_test_ds = pd.read_csv(raw_test_ds, header=None)
-    raw_test_ds.columns =['id','input_text','target_text','tm','id2','species'] 
+    raw_test_ds.columns =['id','input_text','target_text'] 
+    #raw_test_ds.columns =['id','input_text','target_text','tm','id2','species'] 
     test_logger.info(f'# TEST SET {len(raw_test_ds)}')
     test_logger.info(f"# TEST SET 3 COLUMNS PREV {raw_test_ds[['id','input_text','target_text']].head(3)}")
     raw_test_ds['input_text'] = [" ".join("".join(sample.split())) for sample in raw_test_ds['input_text']]
@@ -156,14 +157,14 @@ def classification_test_performances(logits, labels):
     test_logger.info(cm)
 
     # Normalise
-    cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-    fig, ax = plt.subplots(figsize=(10,10))
-    sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Meso','Thermo'], yticklabels=['Meso','Thermo'])
-    plt.ylabel('Actual')
-    plt.xlabel('Predicted')
-    plt.title('Confusion Matrix on Test Data respect to Actual Category')
-    plt.show(block=False)
-    plt.savefig('cm_testdata.png')
+    #cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    #fig, ax = plt.subplots(figsize=(10,10))
+    #sns.heatmap(cmn, annot=True, fmt='.2f', xticklabels=['Meso','Thermo'], yticklabels=['Meso','Thermo'])
+    #plt.ylabel('Actual')
+    #plt.xlabel('Predicted')
+    #plt.title('Confusion Matrix on Test Data respect to Actual Category')
+    #plt.show(block=False)
+    #plt.savefig('cm_testdata.png')
     
     test_logger.info(f' "Accuracy": {accuracy}, "Precision": {precision}, "Recall": {recall}, "F1": {f1}, "MCC": {mcc}')
 
@@ -269,7 +270,6 @@ def classification_test_performances_withpreds(preds, labels):
 
 
 def evaluate_out(task,model,tokenizer,raw_test_df,best_model_path,BATCH_SIZE):
-
     
     test_logger.info(f'TEST DATA:{raw_test_df}')
     
@@ -312,9 +312,9 @@ def evaluate_out(task,model,tokenizer,raw_test_df,best_model_path,BATCH_SIZE):
         df.columns =['id','sequence','cls_label','tm','id2','species','prediction']
     elif task =='classification' or task =='classification_on_regression_data':
         preds, predicted_labels, labels = classification_test_performances(y_preds, input_labels)
-        df[8] = preds
-        df[7] = predicted_labels
-        df.columns =['id','sequence','cls_label','tm','id2','species','prediction_score','prediction']
+        df[7] = preds
+        df[8] = predicted_labels
+        df.columns =['id','sequence','cls_label','prediction','prediction_score']
     elif task == 'bacdive_sequence_classification': #non_redundunt_test_sequences_data_filtered_filtered_finaltestset
         preds, predicted_labels, labels = classification_test_performances(y_preds, input_labels)
         df[4] = preds
@@ -325,6 +325,19 @@ def evaluate_out(task,model,tokenizer,raw_test_df,best_model_path,BATCH_SIZE):
     df.to_csv('test_out.txt',header=True,index=False)
 
     
+## pdbs data:
+'''python main.py --do_test True --model_name_or_path "Rostlab/prot_bert_bfd" --with_adapters True --test_data '/data/TemBERTure/ANALYSIS/Enriched_PDB_data/TEST/Final_non-thermophilic.out' --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/ --task 'classification'
+
+for pdbs data:
+raw_test_ds.columns =['id','input_text','masks',] 
+raw_test_ds['target_text']=0
+    
+elif task =='classification' or task =='classification_on_regression_data':
+        preds, predicted_labels, labels = classification_test_performances(y_preds, input_labels)
+        df[3] = preds
+  	df[4] = predicted_labels
+        df.columns =['id','sequence','masks','cls_label','prediction_score','prediction']
+ '''
     
 
 

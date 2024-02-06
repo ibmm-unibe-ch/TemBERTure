@@ -5,6 +5,7 @@ parser = argparse.ArgumentParser(description='')
 parser.add_argument("--model_path", help="", type=str,default=False)
 parser.add_argument("--pdb_thermo", help="", type=str,default=False)
 parser.add_argument("--pdb_meso", help="", type=str,default=False)
+parser.add_argument("--rostlab", help="", type=bool,default=False)
 args = parser.parse_args()
 model_path_adapter = args.model_path  #'/ibmm_data/TemBERTure/model/BERT_cls/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/'
 pdb_thermo = args.pdb_thermo
@@ -15,9 +16,8 @@ from attention_utils import *
 
 """# TemBERTure INITIALITATION AND ATTENTION SCORE READING FUNCTIONS AND OUTLIER IDENTIFICATION"""
 # Uploading the TemBERTure bert model, fragments trained and initialize it for attention analysis
-model_bert = TemBERTure_for_attention(model_path_adapter)
+model_bert = Rostlab_for_attention() if args.rostlab else TemBERTure_for_attention(model_path_adapter)
 print(model_bert)
-
 
 """# DATA """
 
@@ -39,6 +39,7 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
 
   data = pd.read_csv(data,sep=',',header=None)
   print(data)
+  
   ##################################################################################################
   ######################## INFO STORAGE ############################################################
   ##################################################################################################
@@ -88,6 +89,7 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
 
     seq=pdb.ca.getSequence()
     seq_list=seq
+    device = 'cpu' if len(seq) > 2500 else 'cuda'
     if len(seq) < 512:
       print('Aminoacid sequence length < 510')
     else:
@@ -151,7 +153,7 @@ def aa_enrichment_with_sec_str(data,info_seq_out):
      # print('ATTENTION ---- sasa score with different length')
 
     # 4. computing attention respect to cls token
-    df_all_vs_all,att_to_cls,df_att_to_cls_exp = attention_score_to_cls_token_and_to_all(seq.replace('',' '),model_bert)
+    df_all_vs_all,att_to_cls,df_att_to_cls_exp = attention_score_to_cls_token_and_to_all(seq.replace('',' '),model_bert.to(device),device)
     att_to_cls = att_to_cls.drop(labels = ['[CLS]','[SEP]'])
 
     # 5. high attention analysis

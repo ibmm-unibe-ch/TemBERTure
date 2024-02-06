@@ -1,10 +1,10 @@
+
 import argparse
 parser = argparse.ArgumentParser(description='')
 
 # data
 parser.add_argument("--model_path", help="", type=str,default=False)
 parser.add_argument("--test_out", help="", type=str,default=False)
-parser.add_argument("--rostlab", help="", type=bool,default=False)
 args = parser.parse_args()
 model_path_adapter = args.model_path  #'/ibmm_data/TemBERTure/model/BERT_cls/BEST_MODEL/lr_1e-5_headropout01/output/best_model_epoch4/'
 test_out = args.test_out #'/ibmm_data/TemBERTure/model/BERT_cls/BEST_MODEL/lr_1e-5_headropout01/TEST/test_classifier_data/test_out.txt'
@@ -18,10 +18,10 @@ from attention_utils import *
 
 """# TemBERTure INITIALITATION AND ATTENTION SCORE READING FUNCTIONS AND OUTLIER IDENTIFICATION"""
 # Uploading the TemBERTure bert model, fragments trained and initialize it for attention analysis
-model_bert = Rostlab_for_attention() if args.rostlab else TemBERTure_for_attention(model_path_adapter)
+#model_bert = TemBERTure_for_attention(model_path_adapter)
 ## rostlab only (REMEMBER TO CHANGE IT MANUALLY):
-#model_bert = Rostlab_for_attention()
-#print(model_bert)
+model_bert = Rostlab_for_attention().to('cuda')
+print(model_bert)
 
 
 """# DATA """
@@ -52,7 +52,6 @@ print('# THERMO SEQUENCES in the correct_seqs:',len(thermo_seqs['id']))
 
 """## AA ENRICHMENT - FUNCTION"""
 
-
 def aa_enrichment_seqs(data,info_seq_out):
     from Bio.SeqUtils.ProtParam import ProteinAnalysis
     import tqdm 
@@ -78,18 +77,11 @@ def aa_enrichment_seqs(data,info_seq_out):
     ##################################################################################################
     ######################## FOR EACH SEQ ############################################################
     ##################################################################################################
-    s = 0
+
     for seq in tqdm.tqdm(data['sequence']):
-        device = 'cpu' if len(seq) > 2500 else 'cuda'
- 
+
         seq_list=seq
-        print(f'*** # SEQ {s}')
         print(f'*** LENGTH {len(seq)}')
-        
-        if len(seq) > 17000:
-            print('**** sequence too long, skipped')
-            continue 
-        
         #if len(seq) < 512:
         #   print('Aminoacid sequence length < 510')
         #else:
@@ -128,7 +120,7 @@ def aa_enrichment_seqs(data,info_seq_out):
             aa_distr_count[seq_list[i]].append(1)
 
         # 4. computing attention respect to cls token
-        df_all_vs_all,att_to_cls,df_att_to_cls_exp = attention_score_to_cls_token_and_to_all(seq.replace('',' '),model_bert.to(device),device)
+        df_all_vs_all,att_to_cls,df_att_to_cls_exp = attention_score_to_cls_token_and_to_all(seq.replace('',' '),model_bert)
         att_to_cls = att_to_cls.drop(labels = ['[CLS]','[SEP]'])
 
         # 5. high attention analysis
@@ -140,7 +132,6 @@ def aa_enrichment_seqs(data,info_seq_out):
 
         #5. store all the seq info
         seq_info.append({'aa': list(df.index.values.tolist()),'att_score':list(att_to_cls.tolist())})
-        s += 1
 
 
     ##################################################################################################

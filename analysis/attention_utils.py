@@ -1,5 +1,5 @@
-import matplotlib
-print('matplotlib: {}'.format(matplotlib.__version__))
+#import matplotlib
+#print('matplotlib: {}'.format(matplotlib.__version__))
 
 # libraries for the files in google drive
 # General Libraries
@@ -10,10 +10,13 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import json
+import gc
 
 # Notebook Libraries
 import math
-from transformers import BertTokenizer, BertModel, BertAdapterModel
+from transformers import BertTokenizer, BertModel
+import adapters
+from adapters import BertAdapterModel
 import torch
 import torch.nn as nn
 from transformers.modeling_utils import PreTrainedModel , PretrainedConfig
@@ -25,15 +28,57 @@ def TemBERTure_for_attention(best_model_path=None):
     model = BertAdapterModel.from_pretrained('Rostlab/prot_bert_bfd',output_attentions=True)
     if best_model_path is None:
         #!gdown --folder https://drive.google.com/drive/folders/1vg0Dyz8C2WVXh6fM6jnwnRXnmuRdP4-u #model weights folder
-        best_model_path='./content/final_adapter/'
+        #best_model_path='./content/final_adapter/'
+        print('Model path not found')
     else:
         best_model_path = best_model_path
+    #adapters.init(model)
     model.load_adapter(best_model_path+'AdapterBERT_adapter',with_head=False)
     model.load_head(best_model_path+'AdapterBERT_head_adapter')
     model.set_active_adapters(['AdapterBERT_adapter'])
+    model.active_head == 'AdapterBERT_head_adapter'
+    model.delete_head('default')
+    model.bert.prompt_tuning = nn.Identity()
     #print(model)
     model_bert=model.bert
     return model_bert
+
+def Rostlab_for_attention():
+    print(f'MODEL from rostlab ')
+    model = BertAdapterModel.from_pretrained('Rostlab/prot_bert_bfd',output_attentions=True)
+    model.delete_head('default')
+    model.bert.prompt_tuning = nn.Identity()
+    #print(model)
+    model_bert=model.bert
+    return model_bert
+
+## FROM SEQUENCE/FASTA FILE
+def TemBERTure_for_classification(best_model_path=None):
+    '''TemBERTure model with classification head.
+
+    To be used in with hugginface pipelines:
+    model_classification=TemBERTure_for_classification() # to compute classification score
+    from transformers import pipeline
+    pipe = pipeline("text-classification",model=model_classification,tokenizer='Rostlab/prot_bert_bfd')
+    '''
+    print(f'MODEL WITH ADAPTER from {best_model_path}')
+    model = BertAdapterModel.from_pretrained('Rostlab/prot_bert_bfd',output_attentions=True)
+    if best_model_path is None:
+        #!gdown --folder https://drive.google.com/drive/folders/1qmH7VAxbYzWZdFFrv0VmgugAs49RKuWi #model weights folder
+        #best_model_path='/content/TemBERTure_DEMO/final_adapter/'
+        print('Model path not found')
+    else:
+        best_model_path = best_model_path
+    #adapters.init(model)
+    model.load_adapter(best_model_path+'AdapterBERT_adapter',with_head=False)
+    model.load_head(best_model_path+'AdapterBERT_head_adapter')
+    model.set_active_adapters(['AdapterBERT_adapter'])
+    model.active_head == 'AdapterBERT_head_adapter'
+    model.delete_head('default')
+    model.bert.prompt_tuning = nn.Identity()
+    model_classification=model
+    return model_classification
+
 
 def format_attention(attention, layers=None, heads=None):
     if layers:
@@ -51,7 +96,7 @@ def format_attention(attention, layers=None, heads=None):
     return torch.stack(squeezed)
 
 
-def attention_score_to_cls_token_and_to_all(input_text,model):
+def attention_score_to_cls_token_and_to_all(input_text,model,device):
 
     ''' Retrieve attention from model outputs attentions (tuple(torch.FloatTensor), optional, returned when output_attentions=True
     is passed or when config.output_attentions=True) — Tuple of torch.FloatTensor (one for each layer)
@@ -63,8 +108,10 @@ def attention_score_to_cls_token_and_to_all(input_text,model):
     df_att_to_cls_exp: att_to_cls in pandas.Dataframe format with score in exponential format
 
     '''
-    tokenizer = BertTokenizer.from_pretrained('Rostlab/prot_bert')
-    inputs = tokenizer(input_text, return_tensors='pt')
+    model = model.to(device)
+    tokenizer = BertTokenizer.from_pretrained('Rostlab/prot_bert_bfd')
+    #inputs = tokenizer(input_text, return_tensors='pt') ##COME ERA
+    inputs = tokenizer(input_text, return_tensors='pt').to(device)
     attention_mask=inputs['attention_mask']
     outputs = model(inputs['input_ids'],attention_mask) #len 30 as the model layers #outpus.attentions
     attention = outputs[-1] #outpus has 2 dimensions, the second one are the attentions outputs.attentions
@@ -74,7 +121,9 @@ def attention_score_to_cls_token_and_to_all(input_text,model):
     #(last_attentions[0][0]) #extracting from stacked list
     att_score=[]
     for i in list(last_attentions[0][0]): #extracting every list of attention
-        att_score.append((i).detach().numpy())
+        #att_score.append((i).detach().numpy()) ### COME ERA
+        att_score.append((i).detach().cpu().numpy())
+        
     #len(att_score) # same len as number of tokens (len text + special char)
     x = np.stack(att_score, axis=0 )
     m = np.asmatrix(x) # attention score as matrix
@@ -97,7 +146,8 @@ def attention_score_to_cls_token_and_to_all(input_text,model):
     df_att_to_cls_exp = df_att_to_cls_exp[df_att_to_cls_exp.token != '[SEP]']
     #df_att_to_cls_exp
 
-
+    torch.cuda.empty_cache()
+    gc.collect()
     return df_all_vs_all,att_to_cls,df_att_to_cls_exp
 
 

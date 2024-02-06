@@ -37,6 +37,9 @@ def Train(model_name, model_type, adapters, cls_train,cls_val,regr_train,regr_va
         raise ValueError(f"Unsupported model_type: {model_type}")
     
 
+
+
+
     print('** MODEL PARAMS ** ')
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params = sum(p.numel() for p in model.parameters())
@@ -48,7 +51,8 @@ def Train(model_name, model_type, adapters, cls_train,cls_val,regr_train,regr_va
     
     
     trainer.add_callbacks=[EarlyStoppingCallback(early_stopping_patience=2)]
-    trainer.train(resume_from_checkpoint=True)
+    #trainer.train(resume_from_checkpoint='/ibmm_data/TemBERTure/model/BERT_regr/2_LAYER_HEAD/0-60Tm_only/RANDOM_IND_060ONLY_lr1e-3_headdrop0.3_replica1/output/checkpoint-57100/')
+    trainer.train()
     results = trainer.evaluate()
     
 
