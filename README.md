@@ -6,7 +6,8 @@ TemBERTureCLS is a sequence-based classifier leveraging ProtBert and adopting an
 
 ### MELTING TEMPERATURE PREDICTION TASK : TemBERTure_Tm
 
-TemBERTure_Tm serves as a regression model designed to inference protein melting temperatures (Tm) derived solely from protein sequences.
+TemBERTure_Tm serves as a regression model designed to inference protein melting temperatures (Tm) derived solely from protein sequences.  
+
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
 
 ## How to use TemBERTure 
