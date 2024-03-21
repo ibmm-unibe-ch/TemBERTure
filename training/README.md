@@ -1,6 +1,31 @@
-# TemBERTure
 
-## TRAINING
+This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks:
+
+# 1. TemBERTure_CLS 
+
+TemBERTureCLS is a sequence-based classifier that utilizes ProtBert and adopts an adapter-based approach, following the methodology proposed by Pfeiffer et al. (2020) and Houlsby et al. (2019). This classifier is fine-tuned to predict specific protein thermal category based on sequence data. The model has been trained three times to ensure robustness, but only the weights of the model leveraged for the results are reported here.
+
+# 2. TemBERTure_Tm 
+TemBERTure_Tm serves as a regression model designed to inference protein melting temperatures (Tm) derived solely from protein sequences.
+This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
+We tested different methodologies,also leveraging the classifier weights,and the code is reported below. For each model configurations we trained 3 replicas. However here are reported only the weights of best performing models replicas, that is the standard approach (randomly initialization).
+
+TemBERTure_Tm serves as a regression model designed to infer protein melting temperatures (Tm) derived solely from protein sequences. We tested different methodologies, also leveraging the classifier weights, and the code is reported below. For each model configuration, we trained three replicas. However, only the weights of the best-performing model replicas are reported here, that are using the standard approach (random initialization).
+
+
+#### Methodologies:
+
+- **Sequential Approach:** 5 * 3 model replicas = 15 models
+  - Exploits the pre-trained weights of the classifier in different stages of training.
+  - Fine-tunes the model's pre-trained weights specifically for regression tasks.
+
+- **Standard Approach:** 3 model replicas = 3 models
+  - Directly fine-tunes the model on Tm data, bypassing classification training.
+ 
+![Idea owner(25)](https://github.com/Ch-rode/TemBERTure/assets/61243245/07a15e0a-bc73-4164-9f13-1650eabbcb0e)
+
+
+# MODEL TRAINING:
 ### Arguments
 ```
 import argparse
@@ -97,17 +122,4 @@ python ./model/code/main.py \
 `--task bacdive_sequence_classification`  
 `--task classification_on_regression_data`  
 
-
-### TemBERTure_Tm (18 models)
-
-#### TemBERTure_Tm Methodologies:
-
-- **Sequential Approach:** 5 * 3 model replicas = 15 models
-  - Exploits the pre-trained weights of the classifier in different stages of training.
-  - Fine-tunes the model's pre-trained weights specifically for regression tasks.
-
-- **Standard Approach:** 3 model replicas = 3 models
-  - Directly fine-tunes the model on Tm data, bypassing classification training.
- 
-![Idea owner(25)](https://github.com/Ch-rode/TemBERTure/assets/61243245/07a15e0a-bc73-4164-9f13-1650eabbcb0e)
 
