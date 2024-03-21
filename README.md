@@ -1,32 +1,25 @@
 # TemBERTure
 
-### THERMAL CATEGORY CLASSIFICATION TASK: TemBERTure_CLS (1 model)
+### THERMAL CATEGORY CLASSIFICATION TASK: TemBERTure_CLS 
 
-TemBERTure_CLS is a sequence-based classifier leveraging ProtBert and adopting an adapter-based approach, following the methodology proposed by Pfeiffer et al. (2020) and Houlsby et al. (2019). This classifier is fine-tuned to predict specific protein characteristics based on sequence data.
+TemBERTureCLS is a sequence-based classifier leveraging ProtBert and adopting an adapter-based approach, following the methodology proposed by Pfeiffer et al. (2020) and Houlsby et al. (2019). This classifier is fine-tuned to predict specific protein characteristics based on sequence data.
 
-### MELTING TEMPERATURE PREDICTION TASK : TemBERTure_Tm (18 models)
+### MELTING TEMPERATURE PREDICTION TASK : TemBERTure_Tm
 
-TemBERTure_Tm serves as a regression model exclusively designed to forecast protein melting temperatures (Tm) derived solely from protein sequences.
-For both the methodologies as well as for each stage involving different classifier weight progressions, three model replicas has been trained, each initialized with different seed. This strategy aimed to ensure resilience against variations and capture a diverse spectrum of data representations.
-Each model, with distinct weight initializations, contributes to the overall robustness and capacity to generate reliable predictions for protein melting temperatures.
-
-#### Methodologies:
-
-- **Sequential Approach:** 5 * 3 model replicas = 15 models
-  - Exploits the pre-trained weights of the classifier in different stages of training.
-  - Fine-tunes the model's pre-trained weights specifically for regression tasks.
-
-- **Standard Approach:** 3 model replicas = 3 models
-  - Directly fine-tunes the model on Tm data, bypassing classification training.
-
+TemBERTure_Tm serves as a regression model designed to inference protein melting temperatures (Tm) derived solely from protein sequences.
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
 
-![Idea owner(25)](https://github.com/Ch-rode/TemBERTure/assets/61243245/07a15e0a-bc73-4164-9f13-1650eabbcb0e)
 
 ## How to use TemBERTure 
 ```
 model = TemBERTure(adapter_path=path, device='cuda:6')
 ```
+## Dataset availability
+
+Datasets that were used to train, validate, and test TemStaPro are available in Zenodo.
+
+## Interpretation of the results
+
 ## TRAINING
 ### Arguments
 ```
@@ -107,6 +100,7 @@ python ./main.py \
 --best_model_path /ibmm_data/TemBERTure/model/BERT_cls/adapters/lr1e-5_headdrop02_linearwithwarmup/output/checkpoint-30755/
 --model_type 'BERTSequential' 
 ```
+
 ### Test the model 
 ```
 python /ibmm_data/TemBERTure/model/code/main.py \
@@ -122,3 +116,18 @@ python /ibmm_data/TemBERTure/model/code/main.py \
 `--task regression_on_classification_data`  
 `--task bacdive_sequence_classification`  
 `--task classification_on_regression_data`  
+
+
+### TemBERTure_Tm (18 models)
+
+#### TemBERTure_Tm Methodologies:
+
+- **Sequential Approach:** 5 * 3 model replicas = 15 models
+  - Exploits the pre-trained weights of the classifier in different stages of training.
+  - Fine-tunes the model's pre-trained weights specifically for regression tasks.
+
+- **Standard Approach:** 3 model replicas = 3 models
+  - Directly fine-tunes the model on Tm data, bypassing classification training.
+ 
+![Idea owner(25)](https://github.com/Ch-rode/TemBERTure/assets/61243245/07a15e0a-bc73-4164-9f13-1650eabbcb0e)
+
