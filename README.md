@@ -10,9 +10,11 @@ TemBERTure_Tm serves as a regression model designed to inference protein melting
 
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
 
-## How to use TemBERTure 
+## How to use TemBERTureCLS
 ```
-model = TemBERTure(adapter_path=path, device='cuda:6')
+model = TemBERTure(adapter_path=path, device='cuda:6',batch_size=16, task = 'classification') # temberture_cls
+model = TemBERTure(adapter_path=path, device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
+model.predict(
 ```
 ## Dataset availability
 
