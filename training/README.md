@@ -25,7 +25,7 @@ TemBERTure_Tm serves as a regression model designed to infer protein melting tem
 ![Idea owner(25)](https://github.com/Ch-rode/TemBERTure/assets/61243245/07a15e0a-bc73-4164-9f13-1650eabbcb0e)
 
 
-# MODEL TRAINING:
+# 3. TRAINING:
 ### Arguments
 ```
 import argparse
@@ -106,7 +106,7 @@ python ./main.py \
 --model_type 'BERTSequential' 
 ```
 
-### Test the model 
+# 4. TESTING 
 ```
 python ./model/code/main.py \
 --do_test True \
