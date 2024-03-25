@@ -10,6 +10,16 @@ Both models are built upon the existing protBERT-BFD language model [1] and fine
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
 
 ## How to use TemBERTure
+
+#### Download
+```
+git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
+cd TemBERTure
+git filter-branch --subdirectory-filter temBERTure -- --all
+```
+
+
+
 ```
 seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
 ```
