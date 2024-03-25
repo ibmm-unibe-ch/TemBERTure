@@ -52,7 +52,7 @@ def eval_metrics(avg_pred):
     evaluation_results_cls_0['R-squared Score'] = r2_filtered
 
     # Adding the dictionary for cls_label = 0 to the main dictionary
-    all_evaluation_results['Meso'] = evaluation_results_cls_0
+    all_evaluation_results['Non-thermo'] = evaluation_results_cls_0
 
     print(all_evaluation_results)
 
@@ -116,7 +116,7 @@ def eval_metrics_meso(avg_pred):
     evaluation_results_cls['R-squared Score'] = r2
 
     # Adding the dictionary for cls_label = 0 to the main dictionary
-    all_evaluation_results['All'] = evaluation_results_cls
+    all_evaluation_results['Cumulative'] = evaluation_results_cls
 
     print(all_evaluation_results)
 

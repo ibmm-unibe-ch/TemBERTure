@@ -164,3 +164,29 @@ def find_high_outliers_IQR(df):
     #outliers = df[((df['att_score']<(q1-1.5*IQR)) | (df['att_score']>(q3+1.5*IQR)))]
     outliers = df[((df['att_score']>(q3+1.5*IQR)))] #Keeping only 'high outlier'
     return outliers
+
+
+
+
+def find_high_outliers_IQR_TrueFalse(df):
+    '''IQR is used to measure variability by dividing a data set into quartiles.
+    The data is sorted in ascending order and split into 4 equal parts.
+    The data points which fall below Q1 – 1.5 IQR or above Q3 + 1.5 IQR are outliers.
+    IN this case we are only interested in 'high' outliers '''
+    #df=pd.DataFrame(df['att_score'])
+    q1=df['att_score'].quantile(0.25)
+    q3=df['att_score'].quantile(0.75)
+    IQR=q3-q1
+    #outliers = df[((df['att_score']<(q1-1.5*IQR)) | (df['att_score']>(q3+1.5*IQR)))]
+    outliers = ((df['att_score']>(q3+1.5*IQR))) #Keeping only 'high outlier'
+    return outliers
+
+def attention_and_outliers(sequence,model,device):
+    #computing attention respect to cls token
+    _,att_to_cls,_ = attention_score_to_cls_token_and_to_all(' '.join(sequence),model,device)
+    att_to_cls = att_to_cls.drop(labels = ['[CLS]','[SEP]'])
+    # high attention extraction (True and False 1 per aa)
+    df = pd.DataFrame({'aa':sequence, 'att_score': att_to_cls, })
+    att_outliers=find_high_outliers_IQR_TrueFalse(df) #outlier = high attention 
+    #updating the df
+    return att_to_cls, att_outliers
