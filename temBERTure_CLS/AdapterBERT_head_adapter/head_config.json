@@ -1,0 +1,20 @@
+{
+  "config": {
+    "activation_function": "tanh",
+    "bias": true,
+    "dropout_prob": 0.1,
+    "head_type": "classification",
+    "label2id": {
+      "LABEL_0": 0
+    },
+    "layers": 2,
+    "num_labels": 1,
+    "use_pooler": false
+  },
+  "hidden_size": 1024,
+  "model_class": "BertAdapterModel",
+  "model_name": "Rostlab/prot_bert_bfd",
+  "model_type": "bert",
+  "name": "AdapterBERT_head_adapter",
+  "version": "3.2.1"
+}
