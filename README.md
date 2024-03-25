@@ -20,9 +20,9 @@ git filter-branch --subdirectory-filter temBERTure -- --all
 #### Install the python env (python 3.9.18)
 
 **Conda**:
-conda install --file requirements.txt
+`conda install --file requirements.txt`
 **pip**:
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 
 ```
