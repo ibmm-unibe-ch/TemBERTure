@@ -17,7 +17,12 @@ git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
 cd TemBERTure
 git filter-branch --subdirectory-filter temBERTure -- --all
 ```
+#### Install the python env (python 3.9.18)
 
+**Conda**:
+conda install --file requirements.txt
+**pip**:
+pip install -r requirements.txt
 
 
 ```
