@@ -41,21 +41,6 @@ model_replica3 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica3/',
 ```
 
 
-## Database Content
-
-
-The database included in this repository comprises:
-
-- **[Database Name]**: A brief description of the main database used.
-- **[File Names]**: List of files containing data in the database.
-- **[Data Format]**: Description of the data format used in the database.
-
-## Training Data
-
-In addition to the database, we also provide specific data for model training. These data have been prepared and pre-processed for direct use in training the models offered in this repository.
-
-- **[Dataset Name]**: A description of the training data.
-- **[Dataset Link]**: Datasets that were used to train, validate, and test TemStaPro are available in Zenodo.
 
 [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
 [2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
