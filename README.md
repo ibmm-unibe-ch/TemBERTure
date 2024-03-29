@@ -1,5 +1,8 @@
 # TemBERTure
 
+<img title="logo" alt="Alt text" src="/temberture.tranparent.png">
+
+
 We  developed TemBERTure, a deep-learning package for protein thermostability prediction. It consists of three components: 
 (i) TemBERTureDB, a large curated database of thermophilic and non-thermophilic sequences;
 (ii) TemBERTureCLS, a classifier  which predicts  the thermal class (non-thermophilic or thermophilic) of a protein sequence;
@@ -7,7 +10,7 @@ We  developed TemBERTure, a deep-learning package for protein thermostability pr
 
 Both models are built upon the existing protBERT-BFD language model [1] and fine-tuned through an adapter-based approach [2], [3]. 
 
-This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
+This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. The `/data` folder contains the used datasets for the project.
 
 ## How to use TemBERTure
 
@@ -24,11 +27,11 @@ git filter-branch --subdirectory-filter temBERTure -- --all
 **pip**:
 `pip install -r requirements.txt`   
 
-
+#### Use TemBERTure 
 ```
 seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
 ```
-#### TemBERTure_CLS:
+##### TemBERTure_CLS:
 ```
 model = TemBERTure(adapter_path='./temBERTure/temBERTure_CLS/', device='cuda:6',batch_size=16, task = 'classification')) # temberture_cls
 ```
@@ -39,41 +42,13 @@ Predicted thermal class: Thermophilic
 Thermophilicity prediction score: 0.999098474215349
 Out[1]: ['Thermophilic', 0.999098474215349]
 ```
-#### TemBERTure_TM:
+##### TemBERTure_TM:
 ```
 model_replica1 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica1/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
 model_replica2 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica2/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
 model_replica3 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica3/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
 ```
 
-
-<<<<<<< HEAD
-# Dataset
-The /data folder contains datasets used for the training of the three different models:
-
-## BacDive Dataset
-
-- **BacDiveTrain_cls.txt**: Training dataset for classification model using BacDive data.
-- **BacDiveVal_cls.txt**: Validation dataset for classification model using BacDive data.
-- **BacDiveTest_cls.txt**: Test dataset for classification model using BacDive data.
-
-## Meltome Dataset
-
-- **MeltomeTrain_cls.txt**: Training dataset for classification model using Meltome data.
-- **MeltomeVal_cls.txt**: Validation dataset for classification model using Meltome data.
-- **MeltomeTest_cls.txt**: Test dataset for classification model using Meltome data.
-
-## TemBERTure Dataset
-### Classifier
-- **TemBERTureTrain_cls.txt**: Training dataset for classification model using TemBERTure data.
-- **TemBERTureVal_cls.txt**: Validation dataset for classification model using TemBERTure data.
-- **TemBERTureTest_cls.txt**: Test dataset for classification model using TemBERTure data.
-### Regression
-- **TemBERTureTrain_reg.txt**: Training dataset for regression model using TemBERTure data.
-- **TemBERTureVal_reg.txt**: Validation dataset for regression model using TemBERTure data.
-- **TemBERTureTest_reg.txt**: Test dataset for regression model using TemBERTure data.
-=======
->>>>>>> 7e96d619414ec8ca490a273845950bc59825f014
 
 [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
 [2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
