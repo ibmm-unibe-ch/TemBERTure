@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# 
+CSV_FILE="pymol_pairs.csv"
+PDB_PATH="./temberture/"
+
+# read CSV file line by line
+while IFS=, read -r pair1 pair2
+do
+    # Find the file
+    file1=$(find $PDB_PATH -type f -name "*${pair1}*.pdb" | head -n 1)
+    file2=$(find $PDB_PATH -type f -name "*${pair2}*.pdb" | head -n 1)
+
+    # PyMOL command
+    pymol_command="load $file1, thermo; load $file2, non-thermo; \
+    		   align thermo, non-thermo;\
+                   cartoon putty; spectrum b, blue_red; \
+                   bg_color white; \
+                   zoom; \
+                   set field_of_view, 22;
+                   disable non-thermo; \
+                   ray 6000, 6000; \
+                   png ${pair1}_thermo.png; \
+                   enable non-thermo; \
+                   disable thermo; \
+                   ray 6000, 6000; 
+                   png ${pair2}_non-thermo.png; \
+                   quit
+                   "
+
+    # Execute pymol command
+    ./pymol/pymol -c -d "$pymol_command"
+    python3 combine_images.py ${pair2}_non-thermo.png ${pair1}_thermo.png ${pair1}_${pair2}_combined.png
+    
+done < "$CSV_FILE"
+
+python3 create_image_grid.py grid.png  4 4 *combined.png
+

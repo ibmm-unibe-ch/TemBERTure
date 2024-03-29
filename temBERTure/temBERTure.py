@@ -56,7 +56,10 @@ class TemBERTure:
             preds = 1 / (1 + np.exp(-np.array(y_preds)))
             y_preds = (preds > 0.5).astype(int)# Trasforma le probabilità in etichette binarie
         
-        
-        return y_preds,preds
+        status = 'Thermophilic' if y_preds[0] == 1 else 'Non-thermophilic'
+        print('Predicted thermal class:', status)
+        print('Thermophilicity prediction score:', preds[0])
+
+        return [status,preds[0]]
     
     

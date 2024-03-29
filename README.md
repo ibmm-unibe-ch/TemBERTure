@@ -16,7 +16,13 @@ seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFL
 #### TemBERTure_CLS:
 ```
 model = TemBERTure(adapter_path='./temBERTure/temBERTure_CLS/', device='cuda:6',batch_size=16, task = 'classification')) # temberture_cls
-model.predict([seq])
+```
+```
+In [1]: model.predict([seq])
+100%|██████████████████████████| 1/1 [00:00<00:00, 22.27it/s]
+Predicted thermal class: Thermophilic
+Thermophilicity prediction score: 0.999098474215349
+Out[1]: ['Thermophilic', 0.999098474215349]
 ```
 #### TemBERTure_TM:
 ```
@@ -26,21 +32,30 @@ model_replica3 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica3/',
 ```
 
 
-## Database Content
+# Dataset
+The /data folder contains datasets used for the training of the three different models:
 
+## BacDive Dataset
 
-The database included in this repository comprises:
+- **BacDiveTrain_cls.txt**: Training dataset for classification model using BacDive data.
+- **BacDiveVal_cls.txt**: Validation dataset for classification model using BacDive data.
+- **BacDiveTest_cls.txt**: Test dataset for classification model using BacDive data.
 
-- **[Database Name]**: A brief description of the main database used.
-- **[File Names]**: List of files containing data in the database.
-- **[Data Format]**: Description of the data format used in the database.
+## Meltome Dataset
 
-## Training Data
+- **MeltomeTrain_cls.txt**: Training dataset for classification model using Meltome data.
+- **MeltomeVal_cls.txt**: Validation dataset for classification model using Meltome data.
+- **MeltomeTest_cls.txt**: Test dataset for classification model using Meltome data.
 
-In addition to the database, we also provide specific data for model training. These data have been prepared and pre-processed for direct use in training the models offered in this repository.
-
-- **[Dataset Name]**: A description of the training data.
-- **[Dataset Link]**: Datasets that were used to train, validate, and test TemStaPro are available in Zenodo.
+## TemBERTure Dataset
+### Classifier
+- **TemBERTureTrain_cls.txt**: Training dataset for classification model using TemBERTure data.
+- **TemBERTureVal_cls.txt**: Validation dataset for classification model using TemBERTure data.
+- **TemBERTureTest_cls.txt**: Test dataset for classification model using TemBERTure data.
+### Regression
+- **TemBERTureTrain_reg.txt**: Training dataset for regression model using TemBERTure data.
+- **TemBERTureVal_reg.txt**: Validation dataset for regression model using TemBERTure data.
+- **TemBERTureTest_reg.txt**: Test dataset for regression model using TemBERTure data.
 
 [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
 [2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
