@@ -1,12 +1,10 @@
-# TemBERTure
-
-<img title="logo" alt="Alt text" src="/temberture.tranparent.png">
+<img title="logo" alt="" src="/temberture.tranparent.png">
 
 
-We  developed TemBERTure, a deep-learning package for protein thermostability prediction. It consists of three components: 
-(i) TemBERTureDB, a large curated database of thermophilic and non-thermophilic sequences;
-(ii) TemBERTureCLS, a classifier  which predicts  the thermal class (non-thermophilic or thermophilic) of a protein sequence;
-(iii) TemBERTureTm, a regression model, which predicts the melting temperature of a protein, based on its primary sequence. 
+We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction. It consists of three components: 
+(i) **TemBERTureDB**, a large curated database of thermophilic and non-thermophilic sequences;
+(ii) **TemBERTureCLS**, a classifier  which predicts  the thermal class (non-thermophilic or thermophilic) of a protein sequence;
+(iii) **TemBERTureTm**, a regression model, which predicts the melting temperature of a protein, based on its primary sequence. 
 
 Both models are built upon the existing protBERT-BFD language model [1] and fine-tuned through an adapter-based approach [2], [3]. 
 
