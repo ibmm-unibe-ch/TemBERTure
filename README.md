@@ -10,6 +10,21 @@ Both models are built upon the existing protBERT-BFD language model [1] and fine
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks.
 
 ## How to use TemBERTure
+
+#### Download
+```
+git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
+cd TemBERTure
+git filter-branch --subdirectory-filter temBERTure -- --all
+```
+#### Install the python env (python 3.9.18)
+
+**Conda**:
+`conda install --file requirements.txt`   
+**pip**:
+`pip install -r requirements.txt`   
+
+
 ```
 seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
 ```
@@ -32,6 +47,7 @@ model_replica3 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica3/',
 ```
 
 
+<<<<<<< HEAD
 # Dataset
 The /data folder contains datasets used for the training of the three different models:
 
@@ -56,6 +72,8 @@ The /data folder contains datasets used for the training of the three different 
 - **TemBERTureTrain_reg.txt**: Training dataset for regression model using TemBERTure data.
 - **TemBERTureVal_reg.txt**: Validation dataset for regression model using TemBERTure data.
 - **TemBERTureTest_reg.txt**: Test dataset for regression model using TemBERTure data.
+=======
+>>>>>>> 7e96d619414ec8ca490a273845950bc59825f014
 
 [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
 [2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
