@@ -1,7 +1,7 @@
  <img title="logo" alt="" src="logo.png"  width="600" height="300">
 
 
-We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction. It consists of three components: 
+We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction based on amino acids sequences. It consists of three components: 
 
 (i) **TemBERTureDB**, a large curated database of thermophilic and non-thermophilic sequences;  
 (ii) **TemBERTureCLS**, a classifier  which predicts  the thermal class (non-thermophilic or thermophilic) of a protein sequence;    
@@ -9,24 +9,25 @@ We  developed **TemBERTure**, a deep-learning package for protein thermostabilit
 
 Both models are built upon the existing protBERT-BFD language model [1] and fine-tuned through an adapter-based approach [2], [3]. 
 
-This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. The `/data` folder contains the used datasets for the project.
+This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. The `/data` folder contains the protein IDs used for creating the different datasets used for the project. The protein sequences can be extracted from the TemBERTureDB database.
 
 ## How to use TemBERTure
 
-#### 1.Download
+#### 1. Download
 ```
 git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
 cd TemBERTure
 git filter-branch --subdirectory-filter temBERTure -- --all
 ```
-#### 2.Install the python env (python 3.9.18)
+#### 2. Install the python env (python 3.9.18)
 
 **Conda**:
 `conda install --file requirements.txt`   
 **pip**:
 `pip install -r requirements.txt`   
 
-#### 3.Use TemBERTure 
+#### 3. Use TemBERTure 
+i.e.: 
 ```
 seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
 ```
