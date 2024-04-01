@@ -1,5 +1,5 @@
 # Dataset
-The /data folder contains datasets used for the training of the three different models:
+The /data folder contains the protein IDs used for creating the different datasets used for the project. The protein sequences can be extracted from the TemBERTureDB database.
 
 ## BacDive Dataset
 
