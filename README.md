@@ -28,15 +28,23 @@ git filter-branch --subdirectory-filter temBERTure -- --all
 **pip**:
 `pip install -r requirements.txt`   
 
-#### 3. Use TemBERTure 
+#### 3. Apply TemBERTure on your protein sequences
 i.e.: 
 ```
 seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
 ```
-##### TemBERTure_CLS:
+##### TemBERTureCLS:
 ```
-model = TemBERTure(adapter_path='./temBERTure/temBERTure_CLS/', device='cuda:6',batch_size=16, task = 'classification')) # temberture_cls
+# Initialize TemBERTure model with specified parameters
+from temBERTure.temBERTure import TemBERTure
+model = TemBERTure(
+    adapter_path='./temBERTure/temBERTure_CLS/',  # Path to the model adapter weights
+    device='cuda',                                # Device to run the model on
+    batch_size=1,                                # Batch size for inference
+    task='classification'                         # Task type (e.g., classification for TemBERTureCLS)
+)
 ```
+
 ```
 In [1]: model.predict([seq])
 100%|██████████████████████████| 1/1 [00:00<00:00, 22.27it/s]
@@ -44,11 +52,32 @@ Predicted thermal class: Thermophilic
 Thermophilicity prediction score: 0.999098474215349
 Out[1]: ['Thermophilic', 0.999098474215349]
 ```
-##### TemBERTure_TM:
+##### TemBERTureTM:
 ```
-model_replica1 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica1/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
-model_replica2 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica2/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
-model_replica3 = TemBERTure(adapter_path='./temBERTure/temBERTure_TM/replica3/', device='cuda:6',batch_size=16, task = 'regression') # temberture_Tm
+from temBERTure.temBERTure import TemBERTure
+
+# Initialize TemBERTure models with specified parameters
+model_replica1 = TemBERTure(
+    adapter_path='./temBERTure/temBERTure_TM/replica1/',  # Path to the adapter for replica 1
+    device='cuda',                                       # Device to run the model on
+    batch_size=16,                                         # Batch size for inference
+    task='regression'                                      # Task type (e.g., regression for TemBERTureTM)
+)
+
+model_replica2 = TemBERTure(
+    adapter_path='./temBERTure/temBERTure_TM/replica2/',  # Path to the adapter for replica 2
+    device='cuda',                                       # Device to run the model on
+    batch_size=16,                                         # Batch size for inference
+    task='regression'                                      # Task type (e.g., regression for TemBERTureTM)
+)
+
+model_replica3 = TemBERTure(
+    adapter_path='./temBERTure/temBERTure_TM/replica3/',  # Path to the adapter for replica 3
+    device='cuda',                                       # Device to run the model on
+    batch_size=16,                                         # Batch size for inference
+    task='regression'                                      # Task type (e.g., regression for TemBERTureTM)
+)
+
 ```
 
 ### References
