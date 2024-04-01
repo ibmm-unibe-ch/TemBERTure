@@ -20,13 +20,14 @@ This repository provides implementations and weights for both tasks, allowing us
 git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
 cd TemBERTure
 git filter-branch --subdirectory-filter temBERTure -- --all
+cd temBERTure
 ```
 #### 2. Install the python env (python 3.9.18)
 
 **Conda**:
-`conda install --file ./temBERTure/requirements.txt`   
+`conda install --file requirements.txt`   
 **pip**:
-`pip install -r ./temBERTure/requirements.txt` 
+`pip install -r requirements.txt` 
 
 #### 3. Apply TemBERTure on your protein sequences
 i.e.: 
@@ -35,8 +36,8 @@ seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFL
 ```
 ##### TemBERTureCLS:
 ```
-# Initialize TemBERTure model with specified parameters
-from temBERTure.temBERTure import TemBERTure
+# Initialize TemBERTureCLS model with specified parameters
+from temBERTure import TemBERTure
 model = TemBERTure(
     adapter_path='./temBERTure/temBERTure_CLS/',  # Path to the model adapter weights
     device='cuda',                                # Device to run the model on
@@ -54,9 +55,9 @@ Out[1]: ['Thermophilic', 0.999098474215349]
 ```
 ##### TemBERTureTM:
 ```
-from temBERTure.temBERTure import TemBERTure
+from temBERTure import TemBERTure
 
-# Initialize TemBERTure models with specified parameters
+# Initialize all TemBERTureTM replicas with specified inference parameters
 model_replica1 = TemBERTure(
     adapter_path='./temBERTure/temBERTure_TM/replica1/',  # Path to the adapter for replica 1
     device='cuda',                                        # Device to run the model on
