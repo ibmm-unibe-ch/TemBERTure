@@ -1,4 +1,4 @@
- <img title="logo" alt="" src="logo.png"  width="600" height="300">
+ <img title="logo" alt="" src="logo.png"  width="600" height="300" align="center">
 
 
 We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction based on amino acids sequences. It consists of three components: 
