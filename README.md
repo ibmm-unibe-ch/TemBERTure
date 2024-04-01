@@ -1,4 +1,4 @@
- <img title="logo" alt="" src="logo.png"  width="600" height="300"">
+ <img title="logo" alt="" src="logo.png"  width="600" height="300">
 
 
 We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction. It consists of three components: 
