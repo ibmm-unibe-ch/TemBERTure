@@ -1,5 +1,5 @@
 
-This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks:
+This repository provides the code used to implementate both tasks. To use TemBERTure please refere to the main [README](https://github.com/ibmm-unibe-ch/TemBERTure/blob/main/README.md) .
 
 # 1. TemBERTure_CLS 
 
