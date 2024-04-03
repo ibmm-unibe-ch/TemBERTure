@@ -81,6 +81,23 @@ model_replica3 = TemBERTure(
 
 ```
 
+
+### Citing
+If you use TemBERTure, please cite the [work](https://www.biorxiv.org/content/10.1101/2024.03.28.587204v1).
+```
+@article {Rodella2024.03.28.587204,
+	author = {Chiara Rodella and Symela Lazaridi and Thomas Lemmin},
+	title = {TemBERTure: Advancing protein thermostability prediction with Deep Learning and attention mechanisms},
+	elocation-id = {2024.03.28.587204},
+	year = {2024},
+	doi = {10.1101/2024.03.28.587204},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2024/03/31/2024.03.28.587204},
+	eprint = {https://www.biorxiv.org/content/early/2024/03/31/2024.03.28.587204.full.pdf},
+	journal = {bioRxiv}
+}
+```
+
 ### References
 [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
 [2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
