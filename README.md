@@ -81,7 +81,7 @@ model_replica3 = TemBERTure(
 
 ```
 
-##### Data Availability: TemBERTureDB:
+##### Data Availability: TemBERTureDB
 
 The `/data` folder in this repository contains the sequences used to generate the different datasets for the project. Furthermore, TemBERTureDB can be found on [Zenodo](https://doi.org/10.5281/zenodo.10931927), which also hosts the protein sequences.
 
