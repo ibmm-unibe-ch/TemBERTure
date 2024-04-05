@@ -2,7 +2,9 @@
  <img title="logo" alt="" src="logo.png"  width="600" height="300" align="center">
 </p>
 
+[![DOI:10.1101/2024.03.28.587204](http://img.shields.io/badge/DOI-10.1101/2024.03.28.587204.svg)](<[doi link](https://www.biorxiv.org/content/10.1101/2024.03.28.587204v1)>)
 
+ 
 We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction based on amino acids sequences. It consists of three components: 
 
 (i) **TemBERTureDB**, a large curated database of thermophilic and non-thermophilic sequences;  
