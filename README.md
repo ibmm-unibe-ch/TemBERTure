@@ -11,7 +11,7 @@ We  developed **TemBERTure**, a deep-learning package for protein thermostabilit
 
 Both models are built upon the existing protBERT-BFD language model [1] and fine-tuned through an adapter-based approach [2], [3]. 
 
-This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. The `/data` folder contains the protein IDs used for creating the different datasets used for the project. The protein sequences can be extracted from the TemBERTureDB database.
+This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. 
 
 ## How to use TemBERTure
 
@@ -81,6 +81,9 @@ model_replica3 = TemBERTure(
 
 ```
 
+##### Data Availability: TemBERTureDB:
+
+TemBERTureDB is available on [Zenodo.](https://doi.org/10.5281/zenodo.10931927). In this repository the `/data` folder contains the sequences used for creating the different datasets used for the project. The protein sequences are also available on TemBERTureDB.
 
 ### Citing
 If you use TemBERTure, please cite the [work](https://www.biorxiv.org/content/10.1101/2024.03.28.587204v1).
