@@ -170,7 +170,7 @@
                 <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray)</p>
             </div>
 
-            <h3 id="lifeblood"><strong>The Lifeblood of a Model is its Data</strong></h3>
+            <h3 id="lifeblood"><strong>The lifeblood of a model is its data</strong></h3>
             <p>The foundation of any robust NLP model lies in the <strong>diversity and quality of its data</strong>, and the journey of TemBERTure exemplifies this principle. Early in our research, we realized that existing datasets were insufficient, lacking the size and diversity for effective model generalization. This led us to create TemBERTureDB, a comprehensive database that would empower our model to predict protein thermostability accurately.</p>
             <p>We began our data-gathering effort with the Meltome Atlas, which provided essential experimental data of protein thermal stability across diverse organisms. However, we needed even more diverse data to ensure the robustness of our model. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.</p>
             <p>Building this high-quality database was no small feat. It required months of meticulous effort and (more than) occasional frustrations, as we navigated the complexities of data integration, handling varying formats, incomplete datasets, and inconsistent annotations. Despite the <strong>challenges</strong>, we knew this was essential to lay a solid foundation for our model's success.</p>
@@ -181,7 +181,7 @@
                 <p class="caption">TemBERTure<sub>DB</sub> creation pipeline</p>
             </div>
 
-            <h3 id="structural-secrets"><strong>Can Protein Sequences Alone Reveal Their Structural Secrets?</strong></h3>
+            <h3 id="structural-secrets"><strong>Can protein sequences alone reveal their structural secrets?</strong></h3>
             <div class="center">
                 <img src="img/3WV9_D.gif" width="1000" alt="Protein structure">
                 <p class="caption">Cartoon representation of 3WV9 (chain D) PDB. The width and color indicate the attention score values, with regions with higher attention scores appearing thicker and redder.</p>
@@ -192,7 +192,7 @@
             <p>Could TemBERTure deduce <strong>structural information</strong> solely from the sequence? Specifically, what aspects make a protein stable or unstable? By mapping attention scores onto protein structures, we discovered a fascinating pattern: higher attention scores consistently concentrated in specific areas, such as helical regions and the protein core, across homologous proteins. This finding was like discovering that, regardless of the complexity of a novel, certain plot points always hold more weight in conveying the story.</p>
             <p>These findings demonstrate that TemBERTure naturally prioritizes structurally significant elements when assessing thermostability. The model’s ability to <strong>synthesize both sequence and structural information</strong> leads to more accurate predictions, highlighting its sophisticated approach and opening new avenues for exploring thermostability based on sequence data alone.</p>
 
-            <h3 id="apply-tember">Apply TemBERTure to Your Protein Sequence!</h3>
+            <h3 id="apply-tember">Apply TemBERTure to your protein sequence!</h3>
             <div class="code-block">
                 <pre>
                     <code>
@@ -218,7 +218,7 @@ Out[1]: ['Thermophilic', 0.999098474215349]
                 </pre>
             </div>
 
-            <h3 id="improve">How Can We Improve?</h3>
+            <h3 id="improve">How can we improve?</h3>
             <p>While TemBERTure marks a major leap forward, there is still room for growth. Beyond refining classification capabilities, a key area for improvement lies in predicting protein melting temperatures.</p>
             <p><strong>Expanding the database</strong> to include more diverse and comprehensive datasets will boost the model’s accuracy and generalizability. Moreover, integrating <strong>experimental data</strong> on protein stability across various environmental conditions could offer a richer, more nuanced understanding of thermostability.</p>
             <p>As the field evolves, we hope TemBERTure will spark further exploration and unlock new potentials in harnessing the <strong>power of proteins</strong>.</p>
