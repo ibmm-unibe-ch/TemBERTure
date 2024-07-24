@@ -1,1 +1,107 @@
-test
+<div align="center">   
+<img title="logo" alt="" src="img/logo.png"  width="600" height="300" align="center">
+
+<br/><br/>
+[![DOI:10.1093/bioadv/vbae103](http://img.shields.io/badge/DOI-10.1093/bioadv/vbae103-F28C28.svg)](https://academic.oup.com/bioinformaticsadvances/article/4/1/vbae103/7713394)
+
+</div>
+
+<div align="center">
+<h1 style="text-align: center;">
+    Behind the paper: TemBERTure — Unraveling the secrets of protein thermostability with Deep Learning
+</h1>
+</div>
+
+TemBERTure is a deep learning model that predicts a protein's thermostability class and melting point from its amino acid sequence, providing a more efficient method for understanding and engineering protein stability.
+
+
+### What if we could predict protein thermostability just from its sequence?
+Proteins are the versatile building blocks of life, with immense potential for biotechnological applications. However, their utility is often constrained by their thermal stability. By understanding the intricacies of protein structure and the factors influencing thermal stability, we can harness this knowledge to design novel proteins with tailored properties. Proteins that withstand high temperatures could accelerate  chemical reactions, cut production costs, and enhance efficiency. Traditionally, determining a protein's thermostability has been a laborious process. But what if we could predict it simply by looking at its sequence?
+
+That is exactly what we aimed to do in our recent study. We explored the potential of deep learning to predict protein thermostability directly from their amino acid sequences. Think of it like teaching a computer to predict a book's genre based on its first few sentences.
+
+### **A New Perspective on Proteins: Bridging Biology and Linguistics**
+How do we decipher the language of proteins? Just as words form sentences, proteins are composed of chains of amino acids. In the same way that natural languages adhere to strict grammatical rules, proteins follow precise physicochemical principles.
+
+To unravel the complexities of these biological sequences, we harnessed the power of deep learning. We specifically turned to BERT, a state-of-the-art natural language processing model, to analyze protein sequences as if they were linguistic text. This allowed us to uncover hidden patterns that correlate with protein stability. Our efforts culminated in the development of TemBERTure, an innovative framework designed to predict protein thermostability with state-of-the art accuracy.
+TemBERTure consists of three key components:
+
+1. **TemBERTure<sub>DB</sub>**: A meticulously curated database of thermophilic and non-thermophilic protein sequences, serving as the primary training resource.
+2. **TemBERTure<sub>CLS</sub>**: A classifier that determines whether a protein is thermophilic (able to withstand high temperatures) or non-thermophilic.
+3. **TemBERTure<sub>Tm</sub>**: A regression model that predicts the melting temperature of a protein based on its primary sequence.
+
+<p align="center">
+  <img src="img/F1_b.png" alt="architecure" width="30%">
+</p>
+<p align="center">
+  <small>TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray).</small>
+</p>
+
+### **The Lifeblood of a model is its data**
+
+The foundation of any robust NLP model lies in the diversity and quality of its data, and the journey of TemBERTure exemplifies this principle. Early in our research, we realized that existing datasets were insufficient, lacking the size and diversity for effective model generalization. This led us to create TemBERTure<sub>DB</sub>, a comprehensive database that would empower our model to predict protein thermostability accurately.
+
+We began our data-gathering effort with the Meltome Atlas, which provided essential experimental data of protein thermal stability across diverse organisms. However, we needed even more diverse data to ensure the robustness of our model. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.
+
+Building this high-quality database was no small feat. It required months of meticulous effort and (more than) occasional frustrations, as we navigated the complexities of data integration, handling varying formats, incomplete datasets, and inconsistent annotations. Despite the challenges, we knew this was essential to lay a solid foundation for our model's success.
+
+TemBERTure<sub>DB</sub> is more than just a collection of data; it is the lifeblood of our model. By investing in this resource, we ensured that our model could transcend the limitations of existing approaches, paving the way for more accurate and informative predictions of protein thermostability.
+
+<p align="center">
+  <img src="img/F1_A.png" alt="database" width="40%">
+</p>
+<p align="center">
+  <small>TemBERTure<sub>DB</sub> creation pipeline</small>
+</p>
+
+
+### **Can protein sequences alone reveal their structural secrets?**
+
+<img src="https://github.com/ibmm-unibe-ch/tmp_symela_chiara/blob/main/img/3WV9_D.gif" width="1000">
+
+<p align="center"><small>Cartoon representation of 3WV9 (chain D) PDB. The width and color indicate the attention score values, with regions with higher attention scores appearing thicker and redder.</small></p>
+
+Imagine reading a novel, where you are on the lookout for key plot points that reveal the story’s twists and turns. Just as you focus on these pivotal moments to grasp the essence of the narrative, deep learning models like transformers use attention scores to zero in on crucial elements within a sequence.
+
+In TemBERTure, attention scores help the model focus on the sections of a protein sequence most relevant to stability. Since these patterns are not immediately visible to the human eye, we decided to investigate how attention scores align with the 3D structures of proteins.
+
+Could TemBERTure deduce structural information solely from the sequence? Specifically, what aspects make a protein stable or unstable? By mapping attention scores onto protein structures, we discovered a fascinating pattern: higher attention scores consistently concentrated in specific areas, such as helical regions and the protein core, across homologous proteins. This finding was like discovering that, regardless of the complexity of a novel, certain plot points always hold more weight in conveying the story.
+
+These findings demonstrate that TemBERTure naturally prioritizes structurally significant elements when assessing thermostability. The model’s ability to synthesize both sequence and structural information leads to more accurate predictions, highlighting its sophisticated approach and opening new avenues for exploring thermostability based on sequence data alone.
+
+
+### Apply TemBERTure to your protein sequence!
+``` python
+seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFLDEVDEHARRIGAVNTIINNDGRLIGFNTDGPGYVQALEEEMNITLDGKRILVIGAGGGARGIYFSLLSTAAERIDMANRTVEKAERLVREGEGGRSAYFSLAEAETRLDEYDIIINTTSVGMHPRVEVQPLSLERLRPGVIVSNIIYNPLETKWLKEAKARGARVQNGVGMLVYQGALAFEKWTGQWPDVNRMKQLVIEALRR'
+
+# Initialize TemBERTureCLS model with specified parameters
+from temBERTure import TemBERTure
+model = TemBERTure(
+    adapter_path='./temBERTure/temBERTure_CLS/',  # Path to the model adapter weights
+    device='cuda',                                # Device to run the model on
+    batch_size=1,                                 # Batch size for inference
+    task='classification'                         # Task type (e.g., classification for TemBERTureCLS)
+)
+```
+``` python
+In [1]: model.predict([seq])
+100%|██████████████████████████| 1/1 [00:00<00:00, 22.27it/s]
+Predicted thermal class: Thermophilic
+Thermophilicity prediction score: 0.999098474215349
+Out[1]: ['Thermophilic', 0.999098474215349]
+```
+
+### How Can We Improve? 
+
+While TemBERTure marks a major leap forward, there is still room for growth. Beyond refining classification capabilities, a key area for improvement lies in predicting protein melting temperatures.
+
+Expanding the database to include more diverse and comprehensive datasets will boost the model’s accuracy and generalizability. Moreover, integrating experimental data on protein stability across various environmental conditions could offer a richer, more nuanced understanding of thermostability.
+
+As the field evolves, we hope TemBERTure will spark further exploration and unlock new potentials in harnessing the power of proteins.
+
+For those interested in exploring TemBERTure further, the model and its data are available on [GitHub](https://github.com/ibmm-unibe-ch/TemBERTure). TemBERTureDB can be found on [Zenodo](https://doi.org/10.5281/zenodo.10931927), which also hosts the protein sequences.
+
+### References
+[1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.  
+[2]	N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. [Online]. Available: http://arxiv.org/abs/1902.00751  
+[3]	C. Poth et al., “Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning,” 2023, doi: 10.48550/ARXIV.2311.11077.
