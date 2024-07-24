@@ -22,7 +22,6 @@ This repository provides implementations and weights for both tasks, allowing us
 git clone https://github.com/ibmm-unibe-ch/TemBERTure.git
 cd TemBERTure
 git filter-branch --subdirectory-filter temBERTure -- --all
-cd temBERTure
 ```
 #### 2. Install the python env (python 3.9.18)
 
