@@ -28,6 +28,8 @@
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
         p, ul, pre {
             line-height: 1.6;
@@ -45,6 +47,12 @@
             padding: 10px;
             margin: 10px 0;
             overflow-x: auto;
+        }
+        .caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
         }
         footer {
             text-align: center;
@@ -88,7 +96,7 @@
 
         <div class="center">
             <img src="img/F1_b.png" alt="architecture" width="30%">
-            <small>TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray).</small>
+            <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray).</p>
         </div>
 
         <h3><strong>The Lifeblood of a model is its data</strong></h3>
@@ -99,13 +107,13 @@
 
         <div class="center">
             <img src="img/F1_A.png" alt="database" width="40%">
-            <small>TemBERTure<sub>DB</sub> creation pipeline</small>
+            <p class="caption">TemBERTure<sub>DB</sub> creation pipeline</p>
         </div>
 
         <h3><strong>Can protein sequences alone reveal their structural secrets?</strong></h3>
         <div class="center">
             <img src="https://github.com/ibmm-unibe-ch/tmp_symela_chiara/blob/main/img/3WV9_D.gif" width="1000" alt="Protein structure">
-            <small>Cartoon representation of 3WV9 (chain D) PDB. The width and color indicate the attention score values, with regions with higher attention scores appearing thicker and redder.</small>
+            <p class="caption">Cartoon representation of 3WV9 (chain D) PDB. The width and color indicate the attention score values, with regions with higher attention scores appearing thicker and redder.</p>
         </div>
 
         <p>Imagine reading a novel, where you are on the lookout for key plot points that reveal the story’s twists and turns. Just as you focus on these pivotal moments to grasp the essence of the narrative, deep learning models like transformers use attention scores to zero in on crucial elements within a sequence.</p>
@@ -154,6 +162,8 @@ Out[1]: ['Thermophilic', 0.999098474215349]
             [3] C. Poth et al., “Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning,” 2023, doi: 10.48550/ARXIV.2311.11077.
         </p>
     </div>
-
+    <footer>
+        © 2024 TemBERTure Team. All rights reserved.
+    </footer>
 </body>
 </html>
