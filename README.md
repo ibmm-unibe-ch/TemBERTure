@@ -2,8 +2,7 @@
 <img title="logo" alt="" src="logo.png"  width="600" height="300" align="center">      
 
 <br/><br/>
-[![DOI:10.1101/2024.03.28.587204](http://img.shields.io/badge/DOI-10.1101/2024.03.28.587204-F28C28.svg)](https://www.biorxiv.org/content/10.1101/2024.03.28.587204v1)
-
+[![DOI:10.1093/bioadv/vbae103](http://img.shields.io/badge/DOI-10.1093/bioadv/vbae103-F28C28.svg)](https://academic.oup.com/bioinformaticsadvances/article/4/1/vbae103/7713394) 
 </div>
 
 We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction based on amino acids sequences. It consists of three components: 
