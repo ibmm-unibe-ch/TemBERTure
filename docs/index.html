@@ -11,11 +11,39 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            display: flex;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
             padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            font-size: 1.2em;
+            color: #F28C28;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+        .sidebar ul li a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 800px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -68,7 +96,20 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="sidebar">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#what-if">What if we could predict protein thermostability just from its sequence?</a></li>
+            <li><a href="#new-perspective">A New Perspective on Proteins: Bridging Biology and Linguistics</a></li>
+            <li><a href="#lifeblood">The Lifeblood of a Model is its Data</a></li>
+            <li><a href="#structural-secrets">Can Protein Sequences Alone Reveal Their Structural Secrets?</a></li>
+            <li><a href="#apply-tember">Apply TemBERTure to Your Protein Sequence!</a></li>
+            <li><a href="#improve">How Can We Improve?</a></li>
+            <li><a href="#references">References</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
         <div class="center">
             <img title="logo" alt="TemBERTure logo" src="img/logo.png" width="600" height="300">
             <br/><br/>
@@ -83,11 +124,11 @@
 
         <p>TemBERTure is a deep learning model that predicts a protein's thermostability class and melting point from its amino acid sequence, providing a more efficient method for understanding and engineering protein stability.</p>
 
-        <h3>What if we could predict protein thermostability just from its sequence?</h3>
+        <h3 id="what-if">What if we could predict protein thermostability just from its sequence?</h3>
         <p>Proteins are the versatile <strong>building blocks of life</strong>, with immense potential for biotechnological applications. However, their utility is often constrained by their <strong>thermal stability</strong>. By understanding the intricacies of protein structure and the factors influencing thermal stability, we can harness this knowledge to design novel proteins with tailored properties. Proteins that withstand <strong>high temperatures</strong> could accelerate chemical reactions, cut production costs, and enhance efficiency. Traditionally, determining a protein's thermostability has been a laborious process. But what if we could predict it simply by looking at its sequence?</p>
         <p>That is exactly what we aimed to do in our recent study. We explored the potential of <strong>deep learning</strong> to predict protein thermostability directly from their amino acid sequences. Think of it like teaching a computer to predict a book's genre based on its first few sentences.</p>
 
-        <h3><strong>A New Perspective on Proteins: Bridging Biology and Linguistics</strong></h3>
+        <h3 id="new-perspective"><strong>A New Perspective on Proteins: Bridging Biology and Linguistics</strong></h3>
         <p>How do we decipher the language of proteins? Just as <strong>words</strong> form sentences, proteins are composed of chains of <strong>amino acids</strong>. In the same way that natural languages adhere to strict <strong>grammatical rules</strong>, proteins follow precise <strong>physicochemical principles</strong>.</p>
         <p>To unravel the complexities of these biological sequences, we harnessed the power of deep learning. We specifically turned to BERT, a state-of-the-art natural language processing model, to analyze protein sequences as if they were linguistic text. This allowed us to uncover hidden patterns that correlate with protein stability. Our efforts culminated in the development of <strong>TemBERTure</strong>, an innovative framework designed to predict protein thermostability with state-of-the-art accuracy.</p>
         <p>TemBERTure consists of three key components:</p>
@@ -102,7 +143,7 @@
             <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray).</p>
         </div>
 
-        <h3><strong>The Lifeblood of a model is its data</strong></h3>
+        <h3 id="lifeblood"><strong>The Lifeblood of a Model is its Data</strong></h3>
         <p>The foundation of any robust NLP model lies in the <strong>diversity and quality of its data</strong>, and the journey of TemBERTure exemplifies this principle. Early in our research, we realized that existing datasets were insufficient, lacking the size and diversity for effective model generalization. This led us to create TemBERTure<sub>DB</sub>, a comprehensive database that would empower our model to predict protein thermostability accurately.</p>
         <p>We began our data-gathering effort with the Meltome Atlas, which provided essential experimental data of protein thermal stability across diverse organisms. However, we needed even more diverse data to ensure the <strong>robustness of our model</strong>. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.</p>
         <p>Building this high-quality database was no small feat. It required months of meticulous effort and (more than) occasional frustrations, as we navigated the complexities of data integration, handling varying formats, incomplete datasets, and inconsistent annotations. Despite the <strong>challenges</strong>, we knew this was essential to lay a solid foundation for our model's success.</p>
@@ -113,7 +154,7 @@
             <p class="caption">TemBERTure<sub>DB</sub> creation pipeline</p>
         </div>
 
-        <h3><strong>Can protein sequences alone reveal their structural secrets?</strong></h3>
+        <h3 id="structural-secrets"><strong>Can Protein Sequences Alone Reveal Their Structural Secrets?</strong></h3>
         <div class="center">
             <img src="img/3WV9_D.gif" width="1000" alt="Protein structure">
             <p class="caption">Cartoon representation of 3WV9 (chain D) PDB. The width and color indicate the attention score values, with regions with higher attention scores appearing thicker and redder.</p>
@@ -124,7 +165,7 @@
         <p>Could TemBERTure deduce <strong>structural information</strong> solely from the sequence? Specifically, what aspects make a protein stable or unstable? By mapping attention scores onto protein structures, we discovered a fascinating pattern: higher attention scores consistently concentrated in specific areas, such as helical regions and the protein core, across homologous proteins. This finding was like discovering that, regardless of the complexity of a novel, certain plot points always hold more weight in conveying the story.</p>
         <p>These findings demonstrate that TemBERTure naturally prioritizes structurally significant elements when assessing thermostability. The model’s ability to <strong>synthesize both sequence and structural information</strong> leads to more accurate predictions, highlighting its sophisticated approach and opening new avenues for exploring thermostability based on sequence data alone.</p>
 
-        <h3>Apply TemBERTure to your protein sequence!</h3>
+        <h3 id="apply-tember">Apply TemBERTure to Your Protein Sequence!</h3>
         <div class="code-block">
             <pre>
                 <code>
@@ -150,13 +191,13 @@ Out[1]: ['Thermophilic', 0.999098474215349]
             </pre>
         </div>
 
-        <h3>How Can We Improve?</h3>
+        <h3 id="improve">How Can We Improve?</h3>
         <p>While TemBERTure marks a major leap forward, there is still room for growth. Beyond refining classification capabilities, a key area for improvement lies in predicting protein melting temperatures.</p>
         <p><strong>Expanding the database</strong> to include more diverse and comprehensive datasets will boost the model’s accuracy and generalizability. Moreover, integrating <strong>experimental data</strong> on protein stability across various environmental conditions could offer a richer, more nuanced understanding of thermostability.</p>
         <p>As the field evolves, we hope TemBERTure will spark further exploration and unlock new potentials in harnessing the <strong>power of proteins</strong>.</p>
         <p>For those interested in exploring TemBERTure further, the model and its data are available on <a href="https://github.com/ibmm-unibe-ch/TemBERTure">GitHub</a>. TemBERTureDB can be found on <a href="https://doi.org/10.5281/zenodo.10931927">Zenodo</a>, which also hosts the protein sequences.</p>
 
-        <h3>References</h3>
+        <h3 id="references">References</h3>
         <p>
             [1] A. Elnaggar et al., “ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning,” IEEE Trans. Pattern Anal. Mach. Intell., vol. 44, no. 10, pp. 7112–7127, Oct. 2022, doi: 10.1109/TPAMI.2021.3095381.
             <br>
