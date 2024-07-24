@@ -15,36 +15,50 @@
         }
         .sidebar {
             width: 250px;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             height: 100vh;
             overflow-y: auto;
+            border-right: 2px solid #ddd;
         }
         .sidebar h2 {
-            font-size: 1.2em;
+            font-size: 1.4em;
             color: #F28C28;
+            border-bottom: 2px solid #F28C28;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
         .sidebar ul {
             list-style-type: none;
             padding: 0;
         }
         .sidebar ul li {
-            margin: 10px 0;
+            margin: 15px 0;
         }
         .sidebar ul li a {
             color: #0066cc;
             text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
         }
         .sidebar ul li a:hover {
+            background-color: #f4f4f4;
             text-decoration: underline;
+        }
+        .sidebar ul li a.active {
+            font-weight: bold;
+            color: #F28C28;
+            background-color: #e8e8e8;
         }
         .content {
             margin-left: 270px;
             padding: 20px;
             max-width: 800px;
-            background-color: #fff;
+            background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .center {
@@ -99,7 +113,7 @@
     <div class="sidebar">
         <h2>Table of Contents</h2>
         <ul>
-            <li><a href="#what-if">What if we could predict protein thermostability just from its sequence?</a></li>
+            <li><a href="#what-if" class="active">What if we could predict protein thermostability just from its sequence?</a></li>
             <li><a href="#new-perspective">A New Perspective on Proteins: Bridging Biology and Linguistics</a></li>
             <li><a href="#lifeblood">The Lifeblood of a Model is its Data</a></li>
             <li><a href="#structural-secrets">Can Protein Sequences Alone Reveal Their Structural Secrets?</a></li>
@@ -122,9 +136,9 @@
             <h1>Behind the paper: TemBERTure — Unraveling the secrets of protein thermostability with Deep Learning</h1>
         </div>
 
-        <p>TemBERTure is a deep learning model that predicts a protein's thermostability class and melting point from its amino acid sequence, providing a more efficient method for understanding and engineering protein stability.</p>
+        <p id="what-if">TemBERTure is a deep learning model that predicts a protein's thermostability class and melting point from its amino acid sequence, providing a more efficient method for understanding and engineering protein stability.</p>
 
-        <h3 id="what-if">What if we could predict protein thermostability just from its sequence?</h3>
+        <h3>What if we could predict protein thermostability just from its sequence?</h3>
         <p>Proteins are the versatile <strong>building blocks of life</strong>, with immense potential for biotechnological applications. However, their utility is often constrained by their <strong>thermal stability</strong>. By understanding the intricacies of protein structure and the factors influencing thermal stability, we can harness this knowledge to design novel proteins with tailored properties. Proteins that withstand <strong>high temperatures</strong> could accelerate chemical reactions, cut production costs, and enhance efficiency. Traditionally, determining a protein's thermostability has been a laborious process. But what if we could predict it simply by looking at its sequence?</p>
         <p>That is exactly what we aimed to do in our recent study. We explored the potential of <strong>deep learning</strong> to predict protein thermostability directly from their amino acid sequences. Think of it like teaching a computer to predict a book's genre based on its first few sentences.</p>
 
