@@ -88,19 +88,24 @@ model_replica3 = TemBERTure(
 The `/data` folder in this repository contains the sequences used to generate the different datasets for the project. Furthermore, TemBERTureDB can be found on [Zenodo](https://doi.org/10.5281/zenodo.10931927), which also hosts the protein sequences.
 
 ### Citing
-If you use TemBERTure, please cite the [work](https://www.biorxiv.org/content/10.1101/2024.03.28.587204v1).
+If you use TemBERTure, please cite the [work](https://academic.oup.com/bioinformaticsadvances/article/4/1/vbae103/7713394?login=false).
 ```
-@article {Rodella2024.03.28.587204,
-	author = {Chiara Rodella and Symela Lazaridi and Thomas Lemmin},
-	title = {TemBERTure: Advancing protein thermostability prediction with Deep Learning and attention mechanisms},
-	elocation-id = {2024.03.28.587204},
-	year = {2024},
-	doi = {10.1101/2024.03.28.587204},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2024/03/31/2024.03.28.587204},
-	eprint = {https://www.biorxiv.org/content/early/2024/03/31/2024.03.28.587204.full.pdf},
-	journal = {bioRxiv}
+@article{10.1093/bioadv/vbae103,
+    author = {Rodella, Chiara and Lazaridi, Symela and Lemmin, Thomas},
+    title = "{TemBERTure: advancing protein thermostability prediction with deep learning and attention mechanisms}",
+    journal = {Bioinformatics Advances},
+    volume = {4},
+    number = {1},
+    pages = {vbae103},
+    year = {2024},
+    month = {07},
+    abstract = "{TemBERTure model and the data are available at: https://github.com/ibmm-unibe-ch/TemBERTure.}",
+    issn = {2635-0041},
+    doi = {10.1093/bioadv/vbae103},
+    url = {https://doi.org/10.1093/bioadv/vbae103},
+    eprint = {https://academic.oup.com/bioinformaticsadvances/article-pdf/4/1/vbae103/58610069/vbae103.pdf},
 }
+
 ```
 
 ### References
