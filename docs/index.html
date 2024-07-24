@@ -167,12 +167,12 @@
 
             <div class="center">
                 <img src="img/F1_b.png" alt="architecture" width="30%">
-                <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with slight modifications.</p>
+                <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray)</p>
             </div>
 
             <h3 id="lifeblood"><strong>The Lifeblood of a Model is its Data</strong></h3>
-            <p>Building a deep learning model like TemBERTure necessitates a robust and comprehensive dataset. Initially, we gathered available data from existing repositories, but we soon realized that a mere handful of sequences would not suffice. To build a reliable model, we needed a comprehensive and varied dataset.</p>
-            <p>We faced significant <strong>challenges</strong> in gathering high-quality data. The initial datasets were often incomplete or inconsistent. To address this, we sought more diverse data to ensure the <strong>robustness of our model</strong>. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.</p>
+            <p>The foundation of any robust NLP model lies in the <strong>diversity and quality of its data</strong>, and the journey of TemBERTure exemplifies this principle. Early in our research, we realized that existing datasets were insufficient, lacking the size and diversity for effective model generalization. This led us to create TemBERTureDB, a comprehensive database that would empower our model to predict protein thermostability accurately.</p>
+            <p>We began our data-gathering effort with the Meltome Atlas, which provided essential experimental data of protein thermal stability across diverse organisms. However, we needed even more diverse data to ensure the robustness of our model. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.
             <p>Building this high-quality database was no small feat. It required months of meticulous effort and (more than) occasional frustrations, as we navigated the complexities of data integration, handling varying formats, incomplete datasets, and inconsistent annotations. Despite the <strong>challenges</strong>, we knew this was essential to lay a solid foundation for our model's success.</p>
             <p>TemBERTure<sub>DB</sub> is more than just a collection of data; it is the <strong>lifeblood of our model</strong>. By investing in this resource, we ensured that our model could transcend the limitations of existing approaches, paving the way for more accurate and informative predictions of protein thermostability.</p>
 
