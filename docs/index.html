@@ -14,7 +14,6 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow: hidden;
         }
         .container {
             display: flex;
@@ -30,6 +29,8 @@
             overflow-y: auto;
             border-right: 2px solid #444;
             position: fixed; /* Fixed sidebar */
+            top: 0;
+            left: 0;
         }
         .sidebar h2 {
             font-size: 1.4em;
@@ -69,6 +70,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto; /* Allow vertical scrolling */
             flex: 1;
+            height: 100vh;
             box-sizing: border-box;
         }
         .center {
@@ -165,7 +167,7 @@
 
             <div class="center">
                 <img src="img/F1_b.png" alt="architecture" width="30%">
-                <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with lightweight bottleneck adapter layers[2][3] (shown in gray).</p>
+                <p class="caption">TemBERTure<sub>CLS</sub> model architecture was based on the proBERT-BFD[1] framework, with slight modifications.</p>
             </div>
 
             <h3 id="lifeblood"><strong>The Lifeblood of a Model is its Data</strong></h3>
