@@ -12,12 +12,13 @@
             background-color: #f4f4f4;
             color: #333;
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
             overflow: hidden;
         }
         .container {
             display: flex;
-            width: 100%;
+            flex: 1;
         }
         .sidebar {
             width: 250px;
@@ -28,6 +29,7 @@
             height: 100vh;
             overflow-y: auto;
             border-right: 2px solid #444;
+            position: fixed; /* Fixed sidebar */
         }
         .sidebar h2 {
             font-size: 1.4em;
@@ -61,11 +63,12 @@
             background-color: #555; /* Background color for active link */
         }
         .content {
-            flex: 1;
+            margin-left: 250px; /* Adjust margin to match sidebar width */
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
+            overflow-y: auto; /* Allow vertical scrolling */
+            flex: 1;
             box-sizing: border-box;
         }
         .center {
@@ -166,7 +169,7 @@
             </div>
 
             <h3 id="lifeblood"><strong>The Lifeblood of a Model is its Data</strong></h3>
-            <p>The foundation of any robust NLP model lies in its data. To train TemBERTure, we needed a diverse dataset representing various protein sequences. Initially, we gathered available data from existing repositories, but we soon realized that a mere handful of sequences would not suffice. To build a reliable model, we needed a comprehensive and varied dataset.</p>
+            <p>Building a deep learning model like TemBERTure necessitates a robust and comprehensive dataset. Initially, we gathered available data from existing repositories, but we soon realized that a mere handful of sequences would not suffice. To build a reliable model, we needed a comprehensive and varied dataset.</p>
             <p>We faced significant <strong>challenges</strong> in gathering high-quality data. The initial datasets were often incomplete or inconsistent. To address this, we sought more diverse data to ensure the <strong>robustness of our model</strong>. Thus, we compiled information from additional sources, including ProThermDB, UniProtKB, and BacDive, to create a rich resource encompassing both thermophilic and non-thermophilic sequences.</p>
             <p>Building this high-quality database was no small feat. It required months of meticulous effort and (more than) occasional frustrations, as we navigated the complexities of data integration, handling varying formats, incomplete datasets, and inconsistent annotations. Despite the <strong>challenges</strong>, we knew this was essential to lay a solid foundation for our model's success.</p>
             <p>TemBERTure<sub>DB</sub> is more than just a collection of data; it is the <strong>lifeblood of our model</strong>. By investing in this resource, we ensured that our model could transcend the limitations of existing approaches, paving the way for more accurate and informative predictions of protein thermostability.</p>
@@ -226,7 +229,6 @@ Out[1]: ['Thermophilic', 0.999098474215349]
                 [2] N. Houlsby et al., “Parameter-Efficient Transfer Learning for NLP.” arXiv, Jun. 13, 2019. Accessed: Feb. 14, 2024. http://arxiv.org/abs/1902.00751
                 <br>
                 [3] C. Poth et al., “Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning,” 2023, doi: 10.48550/ARXIV.2311.11077.
-            ciaoo
             </p>
         </div>
     </div>
