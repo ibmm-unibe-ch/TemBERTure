@@ -73,14 +73,14 @@ model_replica1 = TemBERTure(
 )
 
 model_replica2 = TemBERTure(
-    adapter_path='./temBERTure/temBERTure_TM/replica2/',  # Path to the adapter for replica 2
+    adapter_path='./temBERTure_TM/replica2/',  # Path to the adapter for replica 2
     device='cuda',                                        # Device to run the model on
     batch_size=16,                                        # Batch size for inference
     task='regression'                                     # Task type (e.g., regression for TemBERTureTM)
 )
 
 model_replica3 = TemBERTure(
-    adapter_path='./temBERTure/temBERTure_TM/replica3/',  # Path to the adapter for replica 3
+    adapter_path='./temBERTure_TM/replica3/',  # Path to the adapter for replica 3
     device='cuda',                                        # Device to run the model on
     batch_size=16,                                        # Batch size for inference
     task='regression'                                     # Task type (e.g., regression for TemBERTureTM)
