@@ -46,7 +46,7 @@ seq = 'MEKVYGLIGFPVEHSLSPLMHNDAFARLGIPARYHLFSVEPGQVGAAIAGVRALGIAGVNVTIPHKLAVIPFL
 # Initialize TemBERTureCLS model with specified parameters
 from temBERTure import TemBERTure
 model = TemBERTure(
-    adapter_path='./temBERTure/temBERTure_CLS/',  # Path to the model adapter weights
+    adapter_path='./temBERTure_CLS/',  # Path to the model adapter weights
     device='cuda',                                # Device to run the model on
     batch_size=1,                                 # Batch size for inference
     task='classification'                         # Task type (e.g., classification for TemBERTureCLS)
@@ -54,7 +54,7 @@ model = TemBERTure(
 ```
 
 ```
-In [1]: model.predict([seq])
+In [1]: model.predict(seq)
 100%|██████████████████████████| 1/1 [00:00<00:00, 22.27it/s]
 Predicted thermal class: Thermophilic
 Thermophilicity prediction score: 0.999098474215349
@@ -66,7 +66,7 @@ from temBERTure import TemBERTure
 
 # Initialize all TemBERTureTM replicas with specified inference parameters
 model_replica1 = TemBERTure(
-    adapter_path='./temBERTure/temBERTure_TM/replica1/',  # Path to the adapter for replica 1
+    adapter_path='./temBERTure_TM/replica1/',  # Path to the adapter for replica 1
     device='cuda',                                        # Device to run the model on
     batch_size=16,                                        # Batch size for inference
     task='regression'                                     # Task type (e.g., regression for TemBERTureTM)
