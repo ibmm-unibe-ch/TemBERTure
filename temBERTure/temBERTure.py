@@ -46,7 +46,6 @@ class TemBERTure:
             input_texts = [input_texts]
         input_texts = [" ".join("".join(sample.split())) for sample in input_texts]
         #input_texts = input_texts.tolist()
-        print(input_texts)
         nb_batches = math.ceil(len(input_texts) / self.batch_size)
         y_preds = []
 
