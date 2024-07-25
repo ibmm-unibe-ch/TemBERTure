@@ -42,8 +42,11 @@ class TemBERTure:
     
     def predict(self, input_texts):
         self.model = self.model.to(self.device)
+        if not isinstance(input_texts, list):
+            input_texts = [input_texts]
         input_texts = [" ".join("".join(sample.split())) for sample in input_texts]
         #input_texts = input_texts.tolist()
+        print(input_texts)
         nb_batches = math.ceil(len(input_texts) / self.batch_size)
         y_preds = []
 
@@ -55,11 +58,17 @@ class TemBERTure:
         if self.task == 'classification':
             preds = 1 / (1 + np.exp(-np.array(y_preds)))
             y_preds = (preds > 0.5).astype(int)# Trasforma le probabilità in etichette binarie
+            status = ['Thermophilic' if pred == 1 else 'Non-thermophilic' for pred in y_preds]
+            print('Predicted thermal class:', status)
+            print('Thermophilicity prediction score:', preds[0])
+            
+            return [status,preds]
         
-        status = 'Thermophilic' if y_preds[0] == 1 else 'Non-thermophilic'
-        print('Predicted thermal class:', status)
-        print('Thermophilicity prediction score:', preds[0])
+        if self.task == 'regression':
+            print('Predicted melting temperature:', y_preds)
+            
+            return y_preds
 
-        return [status,preds[0]]
+       
     
     
