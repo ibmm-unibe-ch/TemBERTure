@@ -5,6 +5,10 @@
 [![DOI:10.1093/bioadv/vbae103](http://img.shields.io/badge/DOI-10.1093/bioadv/vbae103-F28C28.svg)](https://academic.oup.com/bioinformaticsadvances/article/4/1/vbae103/7713394) 
 </div>
 
+🌟 **Join us on [Discussions](https://github.com/ibmm-unibe-ch/TemBERTure/discussions)!** 🌟
+
+📚 **Have a look at our blog post [here](https://ibmm-unibe-ch.github.io/TemBERTure/)!** 📚
+
 We  developed **TemBERTure**, a deep-learning package for protein thermostability prediction based on amino acids sequences. It consists of three components: 
 
 (i) **TemBERTureDB**, a large curated database of thermophilic and non-thermophilic sequences;  
@@ -15,9 +19,7 @@ Both models are built upon the existing protBERT-BFD language model [1] and fine
 
 This repository provides implementations and weights for both tasks, allowing users to leverage these models for various protein-related predictive tasks. 
 
-🌟 **Join us on [Discussions](https://github.com/ibmm-unibe-ch/TemBERTure/discussions)!** 🌟
 
-📚 **Have a look at our blog post [here](https://ibmm-unibe-ch.github.io/TemBERTure/)!** 📚
 
 ## How to use TemBERTure
 
